@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermo T3 - Quema Grasa Naturalmente | Rinde Saludable</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '654590593697054');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=654590593697054&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+        }
+        .gradient-bg { background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); }
+        .gradient-text { 
+            background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .fuxion-blue { background-color: #1094e6; }
+        .fuxion-blue-dark { background-color: #0c7cc3; }
+        
+        /* Animaciones optimizadas */
+        .pulse-animation { 
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; 
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .8; transform: scale(1.02); }
+        }
+        
+        .floating { 
+            animation: floating 3s ease-in-out infinite; 
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .scroll-smooth { scroll-behavior: smooth; }
+
+        /* Animaciones de scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .bounce-in {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.68, -0.35, 0.265, 1.35);
+        }
+        
+        .bounce-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .stagger-animation {
+            transition-delay: var(--delay, 0s);
+        }
+        
+        /* Estilos responsive mejorados */
+        .responsive-card {
+            transition: all 0.3s ease;
+            border-radius: 16px;
+        }
+        
+        .responsive-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Botones responsive */
+        .responsive-btn {
+            min-height: 52px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .responsive-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Texto responsive */
+        .responsive-title {
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        .responsive-subtitle {
+            line-height: 1.4;
+        }
+        
+        /* Hero responsive */
+        .responsive-hero {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        /* Cards de problemas responsive */
+        .problem-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #ef4444;
+        }
+        
+        /* Transformaciones responsive */
+        .transformation-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+        
+        /* WhatsApp button responsive */
+        .whatsapp-btn {
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+        }
+        
+        /* Animación de onda */
+        .wave-animation {
+            animation: wave 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        /* Efectos de gradiente */
+        .gradient-card {
+            background: linear-gradient(135deg, rgba(16, 148, 230, 0.1) 0%, rgba(12, 124, 195, 0.1) 100%);
+            border: 1px solid rgba(16, 148, 230, 0.2);
+        }
+        
+        /* Optimización touch */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        input, textarea {
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        /* Mejoras de rendimiento */
+        .gpu-acceleration {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+
+        /* Estilos específicos para desktop */
+        @media (min-width: 768px) {
+            .responsive-hero {
+                padding-top: 100px;
+            }
+            
+            .desktop-grid-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
+            
+            .desktop-grid-3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+            
+            .desktop-grid-4 {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .transformation-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .transformation-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <!-- Header responsive -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center max-w-7xl">
+            <div class="text-xl md:text-2xl font-bold gradient-text slide-in-left">Rinde Saludable</div>
+            <button onclick="comprarAhora()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 slide-in-right responsive-btn text-sm md:text-base" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%);">
+                ¡Ordenar!
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section responsive -->
+    <section class="gradient-bg responsive-hero flex items-center">
+        <div class="container mx-auto px-4 w-full max-w-7xl">
+            <div class="desktop-grid-2">
+                <div class="text-center lg:text-left text-white mb-8 lg:mb-0">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 leading-tight responsive-title fade-in">
+                        ¿Cansado de Intentar Perder Peso <span class="text-yellow-300 wave-animation inline-block">Sin Resultados?</span>
+                    </h1>
+                    <p class="text-lg lg:text-xl xl:text-2xl mb-6 lg:mb-8 opacity-90 responsive-subtitle fade-in px-2 lg:px-0" style="--delay: 0.2s;">
+                        Descubre cómo miles de personas están quemando grasa naturalmente con <strong>Thermo T3</strong>, el té termogénico que acelera tu metabolismo sin efectos secundarios.
+                    </p>
+                    
+                    <div class="flex flex-col lg:flex-row gap-4 px-4 lg:px-0">
+                        <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 py-4 lg:py-5 px-6 lg:px-8 rounded-full font-bold text-lg lg:text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.6s;">
+                            🔥 ¡Quiero Quemar Grasa Ya!
+                        </button>
+                        <button onclick="scrollTobenefits()" class="border-2 border-white text-white py-4 lg:py-5 px-6 lg:px-8 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 bounce-in responsive-btn" style="--delay: 0.8s;">
+                            Ver Beneficios
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <div class="floating bg-white rounded-2xl p-3 lg:p-6 shadow-2xl border-4 border-blue-100 scale-in max-w-xs lg:max-w-md" style="--delay: 0.4s;">
+                        <img src="https://aware-backend.s3.amazonaws.com/media/product/img/ThermoT3_Flyer.png" 
+                             alt="Thermo T3" 
+                             class="w-full h-auto object-contain rounded-xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section responsive -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 mb-4 lg:mb-6 responsive-title fade-in">¿Te Identificas con Esto?</h2>
+                <p class="text-lg lg:text-xl text-gray-600 responsive-subtitle fade-in max-w-2xl mx-auto" style="--delay: 0.2s;">
+                    Sabemos exactamente por lo que estás pasando...
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6 max-w-5xl mx-auto">
+                <div class="problem-card responsive-card slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">😤</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Frustración por el Sobrepeso</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Has intentado mil dietas pero los kilos siguen ahí. Te sientes derrotado.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card responsive-card slide-in-right stagger-animation" style="--delay: 0.2s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">⚡</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Metabolismo Lento</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Tu cuerpo no quema calorías. Te sientes cansado sin energía.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card responsive-card slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">🍰</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Antojos Incontrolables</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Los carbohidratos te dominan. No puedes resistir esos antojos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card responsive-card slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">💊</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Miedo a los Químicos</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Te preocupan los efectos de pastillas llenas de químicos artificiales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+				<div class="problem-card responsive-card slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">🔥</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Inflamación Abdominal</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Tu abdomen se siente hinchado y incómodo. La ropa no te queda como quisieras.</p>
+                        </div>
+                    </div>
+                </div>
+				
+                <div class="problem-card responsive-card slide-in-left stagger-animation lg:col-span-2 xl:col-span-1" style="--delay: 0.5s;">
+                    <div class="flex items-start gap-3 lg:gap-4">
+                        <div class="text-2xl lg:text-3xl">😰</div>
+                        <div>
+                            <h3 class="font-bold text-lg lg:text-xl mb-2 text-gray-800">Baja Autoestima</h3>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed">Te da vergüenza tu apariencia. Evitas fotos y situaciones sociales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10 lg:mt-16">
+                <p class="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-3 lg:mb-4 fade-in" style="--delay: 0.7s;">¡Ya No Tienes Que Sufrir Más!</p>
+                <p class="text-lg lg:text-xl text-gray-600 fade-in px-4" style="--delay: 0.8s;">Existe una solución 100% natural que está transformando vidas...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section responsive -->
+    <section id="benefits" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold gradient-text mb-4 lg:mb-6 responsive-title fade-in">Thermo T3: Tu Solución Natural</h2>
+                <p class="text-lg lg:text-xl text-gray-600 responsive-subtitle fade-in max-w-3xl mx-auto" style="--delay: 0.2s;">
+                    El único té termogénico con fórmula científicamente probada
+                </p>
+            </div>
+            
+            <div class="desktop-grid-2 max-w-6xl mx-auto">
+                <div class="order-2 lg:order-1">
+                    <div class="bg-blue-50 rounded-2xl p-6 lg:p-8 mb-8 border border-blue-200 responsive-card slide-in-left">
+                        <h3 class="text-xl lg:text-2xl xl:text-3xl font-bold mb-3 lg:mb-4" style="color: #1094e6;">🧬 Fórmula Científica Avanzada</h3>
+                        <p class="leading-relaxed text-sm lg:text-base xl:text-lg" style="color: #0c7cc3;">
+                            11 ingredientes activos: Té Verde + Té Negro + Cetonas de Frambuesa + Garcinia + L-Carnitina + más.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-4 lg:space-y-6">
+                        <div class="flex items-start gap-3 lg:gap-4 bounce-in stagger-animation" style="--delay: 0.1s;">
+                            <div class="p-2 lg:p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-lg lg:text-xl" style="color: #1094e6;">🔥</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800">Quema Grasa 3x Más Rápido</h4>
+                                <p class="text-gray-600 text-sm lg:text-base xl:text-lg">Las cetonas de frambuesa potencian la quema de grasa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3 lg:gap-4 bounce-in stagger-animation" style="--delay: 0.2s;">
+                            <div class="p-2 lg:p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-lg lg:text-xl" style="color: #1094e6;">⚡</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800">Acelera tu Metabolismo</h4>
+                                <p class="text-gray-600 text-sm lg:text-base xl:text-lg">Cromo + Vitamina B6 activan tu energía natural</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3 lg:gap-4 bounce-in stagger-animation" style="--delay: 0.3s;">
+                            <div class="p-2 lg:p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-lg lg:text-xl" style="color: #1094e6;">🛡️</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800">100% Natural</h4>
+                                <p class="text-gray-600 text-sm lg:text-base xl:text-lg">Sin químicos, endulzado con stevia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 text-center mb-8 lg:mb-0 slide-in-right">
+                    <div class="bg-white rounded-2xl p-6 lg:p-8 shadow-xl border-4 border-blue-100 responsive-card max-w-md mx-auto">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/productDetails/PE/PE_142623_EXT_17092020_213206.jpg" 
+                             alt="Thermo T3" 
+                             class="w-48 lg:w-64 xl:w-80 h-48 lg:h-64 xl:h-80 object-contain mx-auto floating">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section responsive -->
+    <section class="py-16 lg:py-24 gradient-bg">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 lg:mb-6 responsive-title fade-in">¿Qué Vas a Lograr?</h2>
+                <p class="text-lg lg:text-xl xl:text-2xl text-white/90 responsive-subtitle fade-in max-w-3xl mx-auto" style="--delay: 0.2s;">
+                    Resultados reales desde la primera semana
+                </p>
+            </div>
+            
+            <div class="desktop-grid-4 max-w-5xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-6 xl:p-8 text-center responsive-card scale-in stagger-animation" style="--delay: 0.1s;">
+                    <div class="text-3xl lg:text-4xl xl:text-5xl mb-2 lg:mb-4">🔥</div>
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl mb-2 lg:mb-3 text-white">Quema Grasa 24/7</h3>
+                    <p class="text-white/80 text-sm lg:text-base">Tu cuerpo quema grasa incluso durmiendo</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-6 xl:p-8 text-center responsive-card scale-in stagger-animation" style="--delay: 0.2s;">
+                    <div class="text-3xl lg:text-4xl xl:text-5xl mb-2 lg:mb-4">⚡</div>
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl mb-2 lg:mb-3 text-white">Energía Explosiva</h3>
+                    <p class="text-white/80 text-sm lg:text-base">Energía natural todo el día</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-6 xl:p-8 text-center responsive-card scale-in stagger-animation" style="--delay: 0.3s;">
+                    <div class="text-3xl lg:text-4xl xl:text-5xl mb-2 lg:mb-4">🎯</div>
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl mb-2 lg:mb-3 text-white">Control de Antojos</h3>
+                    <p class="text-white/80 text-sm lg:text-base">Domina carbohidratos y azúcares</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-6 xl:p-8 text-center responsive-card scale-in stagger-animation" style="--delay: 0.4s;">
+                    <div class="text-3xl lg:text-4xl xl:text-5xl mb-2 lg:mb-4">💪</div>
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl mb-2 lg:mb-3 text-white">Más Resistencia</h3>
+                    <p class="text-white/80 text-sm lg:text-base">Perfecto antes del ejercicio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof responsive -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 mb-4 lg:mb-6 responsive-title fade-in">Transformaciones Reales</h2>
+                <div class="flex justify-center items-center gap-2 lg:gap-3 mb-3 lg:mb-4 fade-in" style="--delay: 0.2s;">
+                    <div class="flex text-yellow-400 text-xl lg:text-2xl xl:text-3xl">⭐⭐⭐⭐⭐</div>
+                    <span class="text-gray-600 font-semibold text-sm lg:text-base xl:text-lg">4.9/5 en +2,000 reseñas</span>
+                </div>
+                <p class="text-lg lg:text-xl xl:text-2xl text-gray-600 fade-in max-w-2xl mx-auto" style="--delay: 0.3s;">Resultados increíbles con Thermo T3</p>
+            </div>
+            
+            <div class="transformation-grid max-w-6xl mx-auto">
+                <!-- Transformación 1 -->
+                <div class="transformation-card responsive-card slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <div class="grid grid-cols-2 h-48 lg:h-64">
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\At1.jpg" alt="Antes" class="w-64 h-64 object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\Dt1.jpg" alt="Antes" class="w-64 h-64 object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-6">
+                        <div class="flex text-yellow-400 mb-2 text-sm lg:text-base">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-2 italic text-sm lg:text-base">"En 3 meses perdí 18 kilos. El sabor es delicioso y no me da nervios."</p>
+                        <div class="font-semibold text-sm lg:text-base" style="color: #1094e6;">- María González, 28 años</div>
+                        <div class="text-xs lg:text-sm text-gray-500">Perdió 18 kg en 3 meses</div>
+                    </div>
+                </div>
+
+                <!-- Transformación 2 -->
+                <div class="transformation-card responsive-card slide-in-right stagger-animation" style="--delay: 0.2s;">
+                    <div class="grid grid-cols-2 h-48 lg:h-64">
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\At2.jpg" alt="Antes" class="w-64 h-64 object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\Dt2.jpg" alt="Antes" class="w-64 h-64 object-cover object-top">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-6">
+                        <div class="flex text-yellow-400 mb-2 text-sm lg:text-base">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-2 italic text-sm lg:text-base">"Increíble transformación en 2 meses. Mi metabolismo cambió completamente."</p>
+                        <div class="font-semibold text-sm lg:text-base" style="color: #1094e6;">- Carlos Méndez, 33 años</div>
+                        <div class="text-xs lg:text-sm text-gray-500">Transformación en 2 meses</div>
+                    </div>
+                </div>
+
+                <!-- Transformación 3 -->
+                <div class="transformation-card responsive-card slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <div class="grid grid-cols-2 h-48 lg:h-64">
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\At3.jpg" alt="Antes" class="w-64 h-64 object-cover object-top">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <div class="w-full h-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <div class="text-white text-center">
+                                    <img src="assets\Dt3.jpg" alt="Antes" class="w-64 h-64 object-cover object-top">
+                                </div>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-6">
+                        <div class="flex text-yellow-400 mb-2 text-sm lg:text-base">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-2 italic text-sm lg:text-base">"Con Thermo T3 volví a sentirme joven. Bajé 18 kilos en 3 meses."</p>
+                        <div class="font-semibold text-sm lg:text-base" style="color: #1094e6;">- Ana Rodríguez, 38 años</div>
+                        <div class="text-xs lg:text-sm text-gray-500">Perdió 18 kg en 3 meses</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 lg:mt-12">
+                <button onclick="comprarAhora()" class="bg-yellow-400 px-8 lg:px-12 py-4 lg:py-5 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="color: #1094e6; --delay: 0.4s;">
+                    🔥 ¡QUIERO MI TRANSFORMACIÓN!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section responsive -->
+    <section id="order" class="py-16 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold gradient-text mb-4 lg:mb-6 responsive-title fade-in">¡Transforma Tu Cuerpo Hoy!</h2>
+                <p class="text-lg lg:text-xl xl:text-2xl text-gray-600 responsive-subtitle fade-in max-w-3xl mx-auto" style="--delay: 0.2s;">
+                    28 sobres para un mes completo de transformación
+                </p>
+            </div>
+            
+            <div class="max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+                <!-- Paquete Principal responsive -->
+                <div class="rounded-2xl p-6 lg:p-8 xl:p-10 text-center text-white relative shadow-2xl responsive-card bounce-in" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); --delay: 0.3s;">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 px-3 lg:px-4 py-1 lg:py-2 rounded-full font-bold text-xs lg:text-sm wave-animation" style="color: #1094e6;">
+                        ¡RECOMENDADO!
+                    </div>
+                    <h3 class="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 lg:mb-4">Thermo T3</h3>
+                    <div class="text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 lg:mb-3">S/ 129.50</div>
+                    <div class="text-white/90 mb-6 lg:mb-8 text-sm lg:text-base xl:text-lg">Precio por paquete</div>
+                    
+                    <div class="bg-white rounded-xl p-4 lg:p-6 mb-6 lg:mb-8 border-2 border-blue-100">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/productDetails/PE/PE_142623_EXT_17092020_213206.jpg" 
+                             alt="Thermo T3" 
+                             class="w-24 lg:w-32 xl:w-40 h-24 lg:h-32 xl:h-40 object-contain mx-auto mb-3 lg:mb-4 floating">
+                        <div class="font-semibold text-lg lg:text-xl xl:text-2xl" style="color: #1094e6;">28 Sobres (1 mes)</div>
+                        <div class="text-sm lg:text-base xl:text-lg" style="color: #0c7cc3;">Suministro completo</div>
+                    </div>
+                    
+                    <div class="text-left space-y-2 lg:space-y-3 mb-6 lg:mb-8 text-sm lg:text-base xl:text-lg">
+                        <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.1s;">✅ <span>Fórmula termogénica completa</span></div>
+                        <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.2s;">✅ <span>11 ingredientes activos</span></div>
+                        <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.3s;">✅ <span>Sabor limón delicioso</span></div>
+                        <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.4s;">✅ <span>100% natural con stevia</span></div>
+                        <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.5s;">🎁 <span>Video tutorial incluido</span></div>
+                    </div>
+                    
+                    <button onclick="comprarAhora()" class="w-full bg-yellow-400 py-4 lg:py-5 xl:py-6 rounded-xl font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transition-all duration-300 pulse-animation mb-3 lg:mb-4 responsive-btn bounce-in" style="color: #1094e6; --delay: 0.6s;">
+                        🛒 ¡COMPRAR AHORA!
+                    </button>
+                    
+                    <p class="text-xs lg:text-sm text-white/80 fade-in" style="--delay: 0.7s;">
+                        🎥 <a href="https://aware-cursos.s3.amazonaws.com/Tutoriales+para+Clientes/Comprar+con+Power+Link.mp4" target="_blank" class="underline hover:text-yellow-300">
+                            Ver tutorial de compra
+                        </a>
+                    </p>
+                </div>
+                
+                <!-- Información nutricional responsive -->
+                <div class="mt-8 lg:mt-12 scale-in" style="--delay: 0.8s;">
+                    <div class="bg-white rounded-xl p-3 lg:p-4 shadow-lg border-2 border-blue-100 responsive-card">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/nutritionalInformation/PE/IN_PE_6455_ES_01022024_153947.jpg" 
+                             alt="Información Nutricional" 
+                             class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8 lg:mt-12">
+                <div class="inline-flex items-center gap-3 lg:gap-4 bg-green-100 px-4 lg:px-6 py-2 lg:py-3 rounded-full scale-in" style="--delay: 0.9s;">
+                    <div class="text-green-600 text-lg lg:text-xl">🛡️</div>
+                    <div class="text-green-800 font-semibold text-sm lg:text-base xl:text-lg">Respaldado por FuXion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Section responsive -->
+    <section class="py-16 lg:py-24 bg-gradient-to-r from-green-600 to-teal-600 text-white">
+        <div class="container mx-auto px-4 text-center max-w-7xl">
+            <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6 responsive-title fade-in">💪 ¡Tu Momento de Brillar!</h2>
+            <p class="text-lg lg:text-xl xl:text-2xl mb-6 lg:mb-8 responsive-subtitle fade-in max-w-4xl mx-auto" style="--delay: 0.2s;">
+                Miles ya están transformando sus cuerpos con <span class="font-bold text-yellow-300">Thermo T3</span>
+            </p>
+            
+            <div class="grid grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-8 max-w-2xl mx-auto mb-6 lg:mb-10">
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.1s;">
+                    <div class="text-2xl lg:text-3xl xl:text-4xl mb-1 lg:mb-2">✅</div>
+                    <div class="font-semibold text-sm lg:text-base xl:text-lg">100% Natural</div>
+                </div>
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.2s;">
+                    <div class="text-2xl lg:text-3xl xl:text-4xl mb-1 lg:mb-2">🔬</div>
+                    <div class="font-semibold text-sm lg:text-base xl:text-lg">Científico</div>
+                </div>
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.3s;">
+                    <div class="text-2xl lg:text-3xl xl:text-4xl mb-1 lg:mb-2">💯</div>
+                    <div class="font-semibold text-sm lg:text-base xl:text-lg">Garantía</div>
+                </div>
+            </div>
+            
+            <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.4s;">
+                🔥 ¡COMPRAR THERMO T3!
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section responsive -->
+    <section class="py-16 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="text-center mb-12 lg:mb-16">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-800 mb-4 lg:mb-6 responsive-title fade-in">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl p-5 lg:p-6 xl:p-8 shadow-lg responsive-card slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800 mb-2 lg:mb-3">¿Es seguro para diabéticos?</h3>
+                    <p class="text-gray-600 text-sm lg:text-base xl:text-lg leading-relaxed">Sí, está endulzado con stevia sin azúcares. Consulta siempre con tu médico.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-5 lg:p-6 xl:p-8 shadow-lg responsive-card slide-in-right stagger-animation" style="--delay: 0.2s;">
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800 mb-2 lg:mb-3">¿Cuándo veré resultados?</h3>
+                    <p class="text-gray-600 text-sm lg:text-base xl:text-lg leading-relaxed">Energía en 3-5 días, pérdida de peso visible en 2-3 semanas.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-5 lg:p-6 xl:p-8 shadow-lg responsive-card slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800 mb-2 lg:mb-3">¿Tiene efectos secundarios?</h3>
+                    <p class="text-gray-600 text-sm lg:text-base xl:text-lg leading-relaxed">100% natural, sin efectos secundarios. Solo mayor energía y mejor digestión.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-5 lg:p-6 xl:p-8 shadow-lg responsive-card slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <h3 class="font-bold text-lg lg:text-xl xl:text-2xl text-gray-800 mb-2 lg:mb-3">¿Cómo se toma?</h3>
+                    <p class="text-gray-600 text-sm lg:text-base xl:text-lg leading-relaxed">Una taza en ayunas y otra antes del ejercicio. Sabor limón delicioso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA responsive -->
+    <section class="py-16 lg:py-24 gradient-bg text-white text-center">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-6 responsive-title fade-in">¡No Esperes Más!</h2>
+            <p class="text-lg lg:text-xl xl:text-2xl mb-6 lg:mb-8 responsive-subtitle fade-in max-w-4xl mx-auto" style="--delay: 0.2s;">
+                Es tu momento de transformar tu cuerpo con <strong>Thermo T3</strong>
+            </p>
+            
+            <div class="mb-8 lg:mb-12">
+                <button onclick="comprarAhora()" class="bg-yellow-400 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-xl lg:text-2xl xl:text-3xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn w-full max-w-md" style="color: #1094e6; --delay: 0.3s;">
+                    🔥 ¡ORDENAR AHORA!
+                </button>
+                <div class="mt-4 lg:mt-6 text-white/90 fade-in" style="--delay: 0.4s;">
+                    <div class="font-semibold text-sm lg:text-base xl:text-lg">📞 Soporte personalizado</div>
+                    <div class="text-xs lg:text-sm opacity-80">Resolvemos todas tus dudas</div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-6 lg:pt-8">
+                <div class="text-center text-white/70 fade-in" style="--delay: 0.5s;">
+                    <p class="mb-2 text-sm lg:text-base">© 2025 Rinde Saludable. Todos los derechos reservados.</p>
+                    <p class="text-xs lg:text-sm">100% natural • Garantía • Envío nacional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button responsive -->
+    <div class="fixed whatsapp-btn z-50">
+        <a href="https://wa.me/message/MJSGZUPSTHX5G1" target="_blank" 
+           class="bg-green-500 hover:bg-green-600 text-white w-full h-full rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center floating gpu-acceleration">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.106"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Función para comprar
+        function comprarAhora() {
+            // Track Facebook Pixel Purchase Intent
+            fbq('track', 'InitiateCheckout');
+            
+            // Redirect to purchase link
+            window.open('https://tiendafuxion.com/storelt/rinde.saludable/2433238', '_blank');
+        }
+        
+        function scrollTobenefits() {
+            document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Intersection Observer optimizado
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -30px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con animaciones
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll(
+                '.fade-in, .slide-in-left, .slide-in-right, .scale-in, .bounce-in'
+            );
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Animar header inmediatamente
+            setTimeout(() => {
+                document.querySelectorAll('header .slide-in-left, header .slide-in-right').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 100);
+
+            // Preload de imágenes críticas
+            const criticalImages = [
+                'https://aware-backend.s3.amazonaws.com/media/product/img/ThermoT3_Flyer.png',
+                'https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/productDetails/PE/PE_142623_EXT_17092020_213206.jpg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
+        // Optimización de scroll
+        let ticking = false;
+        let scrollTracked = false;
+
+        function updateOnScroll() {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            // Track scroll depth
+            if (scrollPercent > 50 && !scrollTracked) {
+                fbq('track', 'ViewContent');
+                scrollTracked = true;
+            }
+            
+            // Header effect
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white/98');
+            } else {
+                header.classList.remove('bg-white/98');
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
+        });
+
+        // Track interactions
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                fbq('track', 'Lead');
+            }
+        });
+
+        // Touch feedback para iOS
+        document.addEventListener('touchstart', function() {}, { passive: true });
+
+        // Prevenir zoom accidental en inputs
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Lazy loading para imágenes no críticas
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Reducir animaciones si el usuario prefiere menos movimiento
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('*').forEach(el => {
+                el.style.animationDuration = '0.001s';
+                el.style.transitionDuration = '0.001s';
+            });
+        }
+
+        // Optimización de memoria para dispositivos
+        window.addEventListener('beforeunload', () => {
+            // Limpiar observers
+            if (observer) observer.disconnect();
+            if (typeof imageObserver !== 'undefined') imageObserver.disconnect();
+        });
+
+        // Detectar dispositivo móvil para optimizaciones específicas
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Optimizaciones específicas para móvil
+            document.body.classList.add('mobile-device');
+            
+            // Reducir la frecuencia de scroll events en móvil
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(updateOnScroll, 16); // ~60fps
+            }, { passive: true });
+        }
+
+        // Mejorar rendimiento en dispositivos de baja potencia
+        const isLowEndDevice = navigator.hardwareConcurrency <= 2 || navigator.deviceMemory <= 4;
+        
+        if (isLowEndDevice) {
+            // Reducir animaciones complejas
+            document.documentElement.style.setProperty('--animation-duration', '0.2s');
+            
+            // Simplificar efectos visuales
+            document.querySelectorAll('.floating, .pulse-animation').forEach(el => {
+                el.style.animation = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
+                        
