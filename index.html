@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermo T3 - Quema Grasa Naturalmente | Rinde Saludable</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '654590593697054');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=654590593697054&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); }
+        .gradient-text { background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .fuxion-blue { background-color: #1094e6; }
+        .fuxion-blue-dark { background-color: #0c7cc3; }
+        .pulse-animation { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -10px); }
+            100% { transform: translate(0, -0px); }
+        }
+        .scroll-smooth { scroll-behavior: smooth; }
+
+        /* Animaciones de scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .bounce-in {
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .bounce-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .stagger-animation {
+            transition-delay: var(--delay, 0s);
+        }
+        
+        /* Efectos especiales para cards */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Animación de números contadores */
+        .counter {
+            display: inline-block;
+        }
+        
+        /* Efecto de texto escritura */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #fbbf24; }
+        }
+        
+        /* Animación de ondas para hero */
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <!-- Header -->
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text slide-in-left">Rinde Saludable</div>
+            <button onclick="comprarAhora()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 slide-in-right" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%);">
+                ¡Ordenar Ahora!
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-white">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight fade-in">
+                    ¿Cansado de Intentar Perder Peso <span class="text-yellow-300 wave-animation inline-block">Sin Resultados?</span>
+                </h1>
+                <p class="text-xl mb-8 opacity-90 fade-in" style="--delay: 0.2s;">
+                    Descubre cómo miles de personas están quemando grasa naturalmente con Thermo T3, el té termogénico que acelera tu metabolismo sin efectos secundarios.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in" style="--delay: 0.4s;">
+                        🔥 ¡Quiero Quemar Grasa Ya!
+                    </button>
+                    <button onclick="scrollTobenefits()" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 bounce-in" style="--delay: 0.6s;">
+                        Ver Beneficios
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <div class="floating bg-white rounded-3xl p-4 shadow-2xl border-4 border-blue-100 scale-in" style="--delay: 0.8s;">
+                    <img src="https://aware-backend.s3.amazonaws.com/media/product/img/ThermoT3_Flyer.png" 
+                         alt="Thermo T3 - Té Termogénico Natural" 
+                         class="w-full max-w-lg h-auto object-contain rounded-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Agitation Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 fade-in">¿Te Identificas con Esto?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in" style="--delay: 0.2s;">
+                    Sabemos exactamente por lo que estás pasando...
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <div class="text-3xl mb-4">😤</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Frustración por el Sobrepeso</h3>
+                    <p class="text-gray-600">Has intentado mil dietas y ejercicios, pero los kilos siguen ahí. Te sientes derrotado y sin esperanza.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-left stagger-animation" style="--delay: 0.2s;">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Metabolismo Lento</h3>
+                    <p class="text-gray-600">Tu cuerpo no quema calorías como debería. Te sientes cansado y sin energía todo el día.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <div class="text-3xl mb-4">🍰</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Antojos Incontrolables</h3>
+                    <p class="text-gray-600">Los carbohidratos y azúcares te dominan. No puedes resistir esos antojos que sabotean tus esfuerzos.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <div class="text-3xl mb-4">💊</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Miedo a los Químicos</h3>
+                    <p class="text-gray-600">Te preocupan los efectos secundarios de pastillas para adelgazar llenas de químicos artificiales.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-right stagger-animation" style="--delay: 0.5s;">
+                    <div class="text-3xl mb-4">🔥</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Inflamación Abdominal</h3>
+                    <p class="text-gray-600">Tu abdomen se siente hinchado y incómodo. La ropa no te queda como quisieras.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-all duration-300 card-hover slide-in-right stagger-animation" style="--delay: 0.6s;">
+                    <div class="text-3xl mb-4">😰</div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Baja Autoestima</h3>
+                    <p class="text-gray-600">Te da vergüenza tu apariencia. Evitas fotos y situaciones sociales por cómo te ves.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-2xl font-bold text-gray-800 mb-4 fade-in" style="--delay: 0.7s;">¡Ya No Tienes Que Sufrir Más!</p>
+                <p class="text-lg text-gray-600 fade-in" style="--delay: 0.8s;">Existe una solución 100% natural que está transformando vidas...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="benefits" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold gradient-text mb-6 fade-in">Thermo T3: Tu Solución Natural</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in" style="--delay: 0.2s;">
+                    El único té termogénico con fórmula científicamente probada que acelera tu metabolismo de forma natural
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+                <div class="slide-in-left">
+                    <div class="bg-blue-50 rounded-3xl p-8 mb-8 border border-blue-200 card-hover">
+                        <h3 class="text-2xl font-bold mb-4" style="color: #1094e6;">🧬 Fórmula Científica Avanzada</h3>
+                        <p class="leading-relaxed" style="color: #0c7cc3;">
+                            Fusión nutracéutica única que combina 11 ingredientes activos: Té Verde + Té Negro + Té Rojo + Cetonas de Frambuesa + Garcinia Cambogia + L-Carnitina + Café Verde + Ácido Alfalipoico + Aminoácidos + Vitamina B6 + Cromo orgánico.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 bounce-in stagger-animation" style="--delay: 0.1s;">
+                            <div class="p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-xl" style="color: #1094e6;">🔥</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Efecto Termogénico Potenciado</h4>
+                                <p class="text-gray-600">Las cetonas de frambuesa incrementan la quema de grasa hasta 3x más rápido</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 bounce-in stagger-animation" style="--delay: 0.2s;">
+                            <div class="p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-xl" style="color: #1094e6;">⚡</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">Metabolismo Acelerado</h4>
+                                <p class="text-gray-600">El cromo orgánico y Vitamina B6 activan tu metabolismo energético</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 bounce-in stagger-animation" style="--delay: 0.3s;">
+                            <div class="p-3 rounded-full" style="background-color: #e6f3ff;">
+                                <div class="text-xl" style="color: #1094e6;">🛡️</div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-gray-800">100% Natural</h4>
+                                <p class="text-gray-600">Sin químicos artificiales, sin efectos secundarios, endulzado con stevia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center slide-in-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl border-4 border-blue-100 card-hover">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/productDetails/PE/PE_142623_EXT_17092020_213206.jpg" 
+                             alt="Thermo T3 - Té Termogénico Natural" 
+                             class="w-96 h-96 object-contain mx-auto floating">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-6 fade-in">¿Qué Vas a Lograr con Thermo T3?</h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto fade-in" style="--delay: 0.2s;">
+                    Resultados reales que puedes ver y sentir desde la primera semana
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300 card-hover scale-in stagger-animation" style="--delay: 0.1s;">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="font-bold text-lg mb-3 text-white">Quema Grasa 24/7</h3>
+                    <p class="text-white/80">Tu cuerpo se convierte en una máquina quema grasa, incluso mientras duermes</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300 card-hover scale-in stagger-animation" style="--delay: 0.2s;">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="font-bold text-lg mb-3 text-white">Energía Explosiva</h3>
+                    <p class="text-white/80">Adiós al cansancio. Tendrás energía natural todo el día sin nerviosismo</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300 card-hover scale-in stagger-animation" style="--delay: 0.3s;">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="font-bold text-lg mb-3 text-white">Control de Antojos</h3>
+                    <p class="text-white/80">Domina tus antojos de carbohidratos y azúcares de forma natural</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300 card-hover scale-in stagger-animation" style="--delay: 0.4s;">
+                    <div class="text-4xl mb-4">💪</div>
+                    <h3 class="font-bold text-lg mb-3 text-white">Resistencia Mejorada</h3>
+                    <p class="text-white/80">Perfecto para tomar antes del ejercicio. Aumenta tu rendimiento físico</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 fade-in">Transformaciones Reales de Nuestros Clientes</h2>
+                <div class="flex justify-center items-center gap-2 mb-4 fade-in" style="--delay: 0.2s;">
+                    <div class="flex text-yellow-400 text-2xl">⭐⭐⭐⭐⭐</div>
+                    <span class="text-gray-600 font-semibold">4.9/5 en más de 2,000 reseñas</span>
+                </div>
+                <p class="text-lg text-gray-600 fade-in" style="--delay: 0.3s;">Mira los resultados increíbles que están logrando con Thermo T3</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
+                <!-- Transformación 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <div class="grid grid-cols-2">
+                        <div class="relative">
+                            <img src="assets\At1.jpg" alt="Antes" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <img src="assets\Dt1.jpg" alt="Después" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex text-yellow-400 mb-2">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-3 italic">"En 3 meses perdí 15 kilos y mi energía se disparó. No puedo creer lo fácil que fue. El sabor es delicioso y no me da nervios como otros productos."</p>
+                        <div class="font-semibold" style="color: #1094e6;">- María González, 42 años</div>
+                        <div class="text-sm text-gray-500 mt-1">Perdió 15 kg en 3 meses</div>
+                    </div>
+                </div>
+
+                <!-- Transformación 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover slide-in-right stagger-animation" style="--delay: 0.2s;">
+                    <div class="grid grid-cols-2">
+                        <div class="relative">
+                            <img src="assets\At2.jpg" alt="Antes" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <img src="assets\Dt2.jpg" alt="Después" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex text-yellow-400 mb-2">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-3 italic">"Increíble transformación en 4 meses. Thermo T3 me ayudó a conseguir el cuerpo que siempre quise. Mi metabolismo cambió completamente."</p>
+                        <div class="font-semibold" style="color: #1094e6;">- Carlos Méndez, 38 años</div>
+                        <div class="text-sm text-gray-500 mt-1">Transformación completa en 4 meses</div>
+                    </div>
+                </div>
+
+                <!-- Transformación 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <div class="grid grid-cols-2">
+                        <div class="relative">
+                            <img src="assets\At3.jpg" alt="Antes" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <img src="assets\Dt3.jpg" alt="Después" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex text-yellow-400 mb-2">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-3 italic">"Mi metabolismo estaba súper lento después de los 35. Con Thermo T3 volví a sentirme joven. Bajé 12 kilos en 2 meses sin pasar hambre."</p>
+                        <div class="font-semibold" style="color: #1094e6;">- Ana Rodríguez, 39 años</div>
+                        <div class="text-sm text-gray-500 mt-1">Perdió 12 kg en 2 meses</div>
+                    </div>
+                </div>
+
+                <!-- Transformación 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <div class="grid grid-cols-2">
+                        <div class="relative">
+                            <img src="assets\At4.jpg" alt="Antes" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">ANTES</div>
+                        </div>
+                        <div class="relative">
+                            <img src="assets\Dt4.jpg" alt="Después" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-sm font-bold">DESPUÉS</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex text-yellow-400 mb-2">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-700 mb-3 italic">"Después de tener hijos pensé que nunca recuperaría mi figura. Thermo T3 me devolvió la confianza. Ahora me siento mejor que nunca."</p>
+                        <div class="font-semibold" style="color: #1094e6;">- Patricia Lima, 35 años</div>
+                        <div class="text-sm text-gray-500 mt-1">Recuperó su figura después del embarazo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="comprarAhora()" class="bg-yellow-400 px-8 py-4 rounded-full font-bold text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in" style="color: #1094e6; --delay: 0.5s;">
+                    🔥 ¡QUIERO MI TRANSFORMACIÓN AHORA!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Section -->
+    <section class="py-20 bg-gradient-to-r from-green-600 to-teal-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6 fade-in">💪 ¡Tu Transformación Te Espera!</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto fade-in" style="--delay: 0.2s;">
+                Miles de personas ya están transformando sus cuerpos con Thermo T3. <span class="font-bold text-yellow-300">¡Es tu momento de brillar!</span>
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto mb-8">
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.1s;">
+                    <div class="text-3xl mb-2">✅</div>
+                    <div class="font-semibold">100% Natural</div>
+                </div>
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.2s;">
+                    <div class="text-3xl mb-2">🔬</div>
+                    <div class="font-semibold">Fórmula Científica</div>
+                </div>
+                <div class="text-center scale-in stagger-animation" style="--delay: 0.3s;">
+                    <div class="text-3xl mb-2">💯</div>
+                    <div class="font-semibold">Garantía Total</div>
+                </div>
+            </div>
+            
+            <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 px-10 py-4 rounded-full font-bold text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in" style="--delay: 0.4s;">
+                🔥 ¡COMPRAR THERMO T3 AHORA!
+            </button>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-6 fade-in">¡Transforma Tu Cuerpo Hoy!</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8 fade-in" style="--delay: 0.2s;">
+                    Cada paquete contiene 28 sobres de Thermo T3 para un mes completo de transformación
+                </p>
+                
+                <!-- Información Nutricional -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <div class="bg-white rounded-xl p-4 shadow-lg border-4 border-blue-100 card-hover scale-in" style="--delay: 0.3s;">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/nutritionalInformation/PE/IN_PE_6455_ES_01022024_153947.jpg" 
+                             alt="Información Nutricional Thermo T3" 
+                             class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-lg mx-auto">
+                <!-- Paquete Principal -->
+                <div class="rounded-xl p-8 text-center text-white relative shadow-2xl card-hover bounce-in" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%); --delay: 0.4s;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 px-4 py-2 rounded-full font-bold text-sm wave-animation" style="color: #1094e6;">
+                        ¡RECOMENDADO!
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">Thermo T3</h3>
+                    <div class="text-5xl font-bold mb-2">S/ 129.50</div>
+                    <div class="text-white/90 mb-6">Precio por paquete</div>
+                    
+                    <div class="bg-white rounded-lg p-6 mb-8 border-4 border-blue-100">
+                        <img src="https://fuxionstorage.blob.core.windows.net/vhdfuxionoffix/newOffix/productDetails/PE/PE_142623_EXT_17092020_213206.jpg" 
+                             alt="Thermo T3" 
+                             class="w-32 h-32 object-contain mx-auto mb-4 floating">
+                        <div class="font-semibold text-lg" style="color: #1094e6;">28 Sobres (1 mes)</div>
+                        <div style="color: #0c7cc3;">Suministro completo</div>
+                    </div>
+                    
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.1s;">✅ <span>Fórmula termogénica completa</span></li>
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.2s;">✅ <span>11 ingredientes activos</span></li>
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.3s;">✅ <span>Sabor limón delicioso</span></li>
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.4s;">✅ <span>100% natural con stevia</span></li>
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.5s;">✅ <span>28 sobres individuales</span></li>
+                        <li class="flex items-center gap-3 slide-in-left stagger-animation" style="--delay: 0.6s;">🎁 <span>Video tutorial de compra incluido</span></li>
+                    </ul>
+                    
+                    <button onclick="comprarAhora()" class="w-full bg-yellow-400 py-4 rounded-lg font-bold text-xl hover:bg-yellow-300 transition-all duration-300 pulse-animation mb-4 bounce-in" style="color: #1094e6; --delay: 0.7s;">
+                        🛒 ¡COMPRAR AHORA!
+                    </button>
+                    
+                    <p class="text-sm text-white/80 fade-in" style="--delay: 0.8s;">
+                        🎥 <a href="https://aware-cursos.s3.amazonaws.com/Tutoriales+para+Clientes/Comprar+con+Power+Link.mp4" target="_blank" class="underline hover:text-yellow-300">
+                            Ver tutorial de cómo comprar
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="inline-flex items-center gap-4 bg-green-100 px-6 py-3 rounded-full scale-in" style="--delay: 0.9s;">
+                    <div class="text-green-600 text-2xl">🛡️</div>
+                    <div class="text-green-800 font-semibold">Producto respaldado por FuXion • Calidad garantizada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6 fade-in">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover slide-in-left stagger-animation" style="--delay: 0.1s;">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">¿Es seguro para diabéticos?</h3>
+                    <p class="text-gray-600">Sí, Thermo T3 está endulzado con stevia y no contiene azúcares añadidos. Sin embargo, siempre consulta con tu médico antes de comenzar cualquier suplemento.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover slide-in-right stagger-animation" style="--delay: 0.2s;">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">¿Cuándo veré resultados?</h3>
+                    <p class="text-gray-600">La mayoría de nuestros clientes notan aumento de energía en los primeros 3-5 días, y pérdida de peso visible en 2-3 semanas de uso constante.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover slide-in-left stagger-animation" style="--delay: 0.3s;">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">¿Tiene efectos secundarios?</h3>
+                    <p class="text-gray-600">Al ser 100% natural, Thermo T3 no tiene efectos secundarios. Algunos usuarios experimentan mayor energía y mejor digestión.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover slide-in-right stagger-animation" style="--delay: 0.4s;">
+                    <h3 class="font-bold text-lg text-gray-800 mb-3">¿Cómo se toma?</h3>
+                    <p class="text-gray-600">Toma una taza por la mañana en ayunas y otra 30 minutos antes del ejercicio. Su delicioso sabor a limón lo hace muy fácil de consumir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="py-20 gradient-bg text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-6 fade-in">¡No Esperes Más!</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto fade-in" style="--delay: 0.2s;">
+                Miles de personas ya están transformando sus cuerpos con Thermo T3. Es tu momento de brillar.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                <button onclick="comprarAhora()" class="bg-yellow-400 px-10 py-4 rounded-full font-bold text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in" style="color: #1094e6; --delay: 0.3s;">
+                    🔥 ¡ORDENAR THERMO T3 AHORA!
+                </button>
+                <div class="text-white/90 fade-in" style="--delay: 0.4s;">
+                    <div class="font-semibold">📞 Soporte personalizado disponible</div>
+                    <div class="text-sm opacity-80">Resolvemos todas tus dudas</div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8">
+                <div class="text-center text-white/70 fade-in" style="--delay: 0.5s;">
+                    <p class="mb-2">© 2025 Rinde Saludable. Todos los derechos reservados.</p>
+                    <p class="text-sm">Producto 100% natural • Garantía de satisfacción • Envío a todo el país</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/message/MJSGZUPSTHX5G1" target="_blank" 
+           class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center floating">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.106"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Función para comprar
+        function comprarAhora() {
+            // Track Facebook Pixel Purchase Intent
+            fbq('track', 'InitiateCheckout');
+            
+            // Redirect to purchase link
+            window.open('https://tiendafuxion.com/storelt/rinde.saludable/2433238', '_blank');
+        }
+        
+        function scrollTobenefits() {
+            document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Intersection Observer para animaciones de scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos los elementos con clases de animación
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll(
+                '.fade-in, .slide-in-left, .slide-in-right, .scale-in, .bounce-in'
+            );
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Animar elementos del header inmediatamente
+            setTimeout(() => {
+                document.querySelectorAll('header .slide-in-left, header .slide-in-right').forEach(el => {
+                    el.classList.add('visible');
+                });
+            }, 100);
+        });
+
+        // Animación de números contadores
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Track page interactions
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                fbq('track', 'Lead');
+            }
+        });
+        
+        // Track scroll depth y efectos del header
+        let scrollTracked = false;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            if (scrollPercent > 50 && !scrollTracked) {
+                fbq('track', 'ViewContent');
+                scrollTracked = true;
+            }
+            
+            // Header transparency effect
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-white/98');
+            } else {
+                header.classList.remove('bg-white/98');
+            }
+        });
+
+        // Efecto parallax suave para elementos flotantes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.2;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Agregar efecto de particulas al hero (opcional)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'fixed pointer-events-none w-2 h-2 bg-white/20 rounded-full';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.zIndex = '1';
+            
+            document.body.appendChild(particle);
+            
+            const animation = particle.animate([
+                { transform: 'translateY(0px)', opacity: 0.8 },
+                { transform: `translateY(-${window.innerHeight + 100}px)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Crear particulas ocasionalmente en el hero
+        const heroSection = document.querySelector('.gradient-bg');
+        if (heroSection) {
+            setInterval(() => {
+                if (Math.random() < 0.1) { // 10% de probabilidad cada segundo
+                    createParticle();
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
