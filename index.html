@@ -1393,6 +1393,46 @@
                     currency: 'PEN',
                     value: 129.50
                 });
+				
+				//Enviar Formulario
+				const map = {
+				  "entry.258585740": "nombre",
+				  "entry.1348879985": "apellido",
+				  "entry.856949095": "dni",
+				  "entry.807971732": "telefono",
+				  "entry.1110212265": "correo",
+				  "entry.842881998": "departamento",
+				  "entry.1223024805": "provincia",
+				  "entry.63336835": "distrito",
+				  "entry.1277427816": "direccion",
+				  "entry.2017053729": "producto"
+				};
+
+				// Crear formulario oculto para Google Forms
+				const googleForm = document.createElement("form");
+				googleForm.action = "https://docs.google.com/forms/d/e/1FAIpQLScLUJwobu8edKOeq5I7wdGashAjt3kZsPtsru2C1DY5Cs1kAw/formResponse";
+				googleForm.method = "POST";
+				googleForm.target = "dummy_iframe";
+				googleForm.style.display = "none";
+
+				for (const entryId in map) {
+				  const originalField = document.querySelector(`[name='${map[entryId]}']`);
+				  const input = document.createElement("input");
+				  input.type = "hidden";
+				  input.name = entryId;
+				  input.value = entryId === "entry.2017053729" ? "ThermoT3" : (originalField?.value || "");
+				  googleForm.appendChild(input);
+				}
+
+				if (!document.querySelector("iframe[name='dummy_iframe']")) {
+				  const iframe = document.createElement("iframe");
+				  iframe.name = "dummy_iframe";
+				  iframe.style.display = "none";
+				  document.body.appendChild(iframe);
+				}
+
+				document.body.appendChild(googleForm);
+				googleForm.submit();				
                 
                 // Mostrar confirmación
                 alert('¡Pedido registrado exitosamente! Te contactaremos pronto para confirmar tu pedido.\n\n' +
@@ -1587,46 +1627,6 @@
         }
 
     </script>
-
-<script>
-document.getElementById("orderForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const button = form.querySelector("button[type='submit']");
-  const originalContent = button.innerHTML;
-
-  // Crear FormData (evita el preflight)
-  const formData = new FormData(form);
-
-  // Mostrar loader
-  button.disabled = true;
-  button.innerHTML = `<span class="loader mr-2"></span> Enviando...`;
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbx2V7Y0GE_WKQUAAtByfO1alQqXmbOsedOSNrMFyr64LQe6BpUk1qGaDERbQRZA3Bjl/exec", {
-      method: "POST",
-      body: formData // ✅ Enviamos como FormData, no JSON
-    });
-
-    const text = await response.text();
-
-    if (response.ok && text.includes("OK")) {
-      alert("✅ Pedido enviado correctamente. Te contactaremos pronto.");
-      form.reset();
-    } else {
-      alert("❌ Error al enviar: " + text);
-    }
-  } catch (err) {
-    alert("❌ Error de conexión. Intenta nuevamente.");
-    console.error("Error:", err);
-  }
-
-  button.disabled = false;
-  button.innerHTML = originalContent;
-});
-</script>
-
 
 </body>
 </html>
