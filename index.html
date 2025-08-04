@@ -1405,7 +1405,8 @@
 				  "entry.1223024805": "provincia",
 				  "entry.63336835": "distrito",
 				  "entry.1277427816": "direccion",
-				  "entry.2017053729": "producto"
+				  "entry.2017053729": "producto",
+				  "entry.94523314": "estado"
 				};
 
 				// Crear formulario oculto para Google Forms
@@ -1416,12 +1417,20 @@
 				googleForm.style.display = "none";
 
 				for (const entryId in map) {
-				  const originalField = document.querySelector(`[name='${map[entryId]}']`);
-				  const input = document.createElement("input");
-				  input.type = "hidden";
-				  input.name = entryId;
-				  input.value = entryId === "entry.2017053729" ? "ThermoT3" : (originalField?.value || "");
-				  googleForm.appendChild(input);
+				const originalField = document.querySelector(`[name='${map[entryId]}']`);
+				const input = document.createElement("input");
+				input.type = "hidden";
+				input.name = entryId;
+
+				if (entryId === "entry.2017053729") {
+				input.value = "ThermoT3";
+				} else if (entryId === "entry.94523314") {
+				input.value = "Pendiente";
+				} else {
+				input.value = originalField?.value || "";
+				}
+
+				googleForm.appendChild(input);
 				}
 
 				if (!document.querySelector("iframe[name='dummy_iframe']")) {
