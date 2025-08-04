@@ -1618,6 +1618,9 @@
                 el.style.animation = 'none';
             });
         }
+
+        // Función para acceso rápido a descargar Excel (para debugging)
+        window.descargarPedidos = descargarExcel;
     </script>
 
 <script>
@@ -1675,7 +1678,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("❌ Error al enviar el formulario. Intenta nuevamente.");
       }
     } catch (error) {
-      
+      console.error("Error al enviar:", error);
       alert("❌ Error al enviar. Intenta nuevamente.");
     }
 
