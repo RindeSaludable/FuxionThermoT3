@@ -1362,6 +1362,11 @@
             const orderForm = document.getElementById('orderForm');
             orderForm.addEventListener('submit', function(e) {
                 e.preventDefault();
+				
+				// Enviar evento a Meta Pixel
+				if (typeof fbq !== 'undefined') {
+					fbq('trackCustom', 'FormularioEnviado');
+				}
                 
                 // Recopilar datos del formulario
                 const formData = new FormData(this);
@@ -1389,10 +1394,10 @@
                 pedidosData.push(pedidoData);
                 
                 // Track Facebook Pixel Purchase
-                fbq('track', 'Purchase', {
-                    currency: 'PEN',
-                    value: 129.50
-                });
+                //fbq('track', 'Purchase', {
+                //    currency: 'PEN',
+                //    value: 129.50
+                //});
 				
 				//Enviar Formulario
 				const map = {
