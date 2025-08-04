@@ -24,6 +24,7 @@
     <!-- End Meta Pixel Code -->
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         body { 
@@ -213,7 +214,7 @@
             user-select: none;
         }
         
-        input, textarea {
+        input, textarea, select {
             -webkit-user-select: text;
             -khtml-user-select: text;
             -moz-user-select: text;
@@ -225,6 +226,131 @@
         .gpu-acceleration {
             transform: translateZ(0);
             -webkit-transform: translateZ(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: none;
+            border-radius: 20px;
+            width: 95%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1094e6;
+            box-shadow: 0 0 0 3px rgba(16, 148, 230, 0.1);
+        }
+
+        .form-group input:invalid {
+            border-color: #ef4444;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+            color: #1094e6;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            animation: pulseGold 2s infinite;
+        }
+
+        @keyframes pulseGold {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         /* Estilos específicos para desktop */
@@ -275,9 +401,12 @@
     <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center max-w-7xl">
             <div class="text-xl md:text-2xl font-bold gradient-text slide-in-left">Rinde Saludable</div>
-            <button onclick="comprarAhora()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 slide-in-right responsive-btn text-sm md:text-base" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%);">
-                ¡Ordenar!
-            </button>
+            <div class="flex items-center gap-4">
+                <div class="price-badge hidden md:block">S/ 129.50</div>
+                <button onclick="openOrderModal()" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300 slide-in-right responsive-btn text-sm md:text-base" style="background: linear-gradient(135deg, #1094e6 0%, #0c7cc3 100%);">
+                    ¡Ordenar!
+                </button>
+            </div>
         </div>
     </header>
 
@@ -286,6 +415,7 @@
         <div class="container mx-auto px-4 w-full max-w-7xl">
             <div class="desktop-grid-2">
                 <div class="text-center lg:text-left text-white mb-8 lg:mb-0">
+                    <div class="price-badge md:hidden mb-4 inline-block">S/ 129.50</div>
                     <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 leading-tight responsive-title fade-in">
                         ¿Cansado de Intentar Perder Peso <span class="text-yellow-300 wave-animation inline-block">Sin Resultados?</span>
                     </h1>
@@ -294,7 +424,7 @@
                     </p>
                     
                     <div class="flex flex-col lg:flex-row gap-4 px-4 lg:px-0">
-                        <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 py-4 lg:py-5 px-6 lg:px-8 rounded-full font-bold text-lg lg:text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.6s;">
+                        <button onclick="openOrderModal()" class="bg-yellow-400 text-blue-900 py-4 lg:py-5 px-6 lg:px-8 rounded-full font-bold text-lg lg:text-xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.6s;">
                             🔥 ¡Quiero Quemar Grasa Ya!
                         </button>
                         <button onclick="scrollTobenefits()" class="border-2 border-white text-white py-4 lg:py-5 px-6 lg:px-8 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 bounce-in responsive-btn" style="--delay: 0.8s;">
@@ -535,7 +665,6 @@
 					</div>
 				</div>
 
-
                 <!-- Transformación 2 -->
                 <div class="transformation-card responsive-card slide-in-right stagger-animation" style="--delay: 0.2s;">
                     <div class="grid grid-cols-2 gap-2 md:gap-4">
@@ -594,7 +723,7 @@
             </div>
 
             <div class="text-center mt-8 lg:mt-12">
-                <button onclick="comprarAhora()" class="bg-yellow-400 px-8 lg:px-12 py-4 lg:py-5 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="color: #1094e6; --delay: 0.4s;">
+                <button onclick="openOrderModal()" class="bg-yellow-400 px-8 lg:px-12 py-4 lg:py-5 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="color: #1094e6; --delay: 0.4s;">
                     🔥 ¡QUIERO MI TRANSFORMACIÓN!
                 </button>
             </div>
@@ -637,9 +766,15 @@
                         <div class="flex items-center gap-2 lg:gap-3 slide-in-left stagger-animation" style="--delay: 0.5s;">🎁 <span>Video tutorial incluido</span></div>
                     </div>
                     
-                    <button onclick="comprarAhora()" class="w-full bg-yellow-400 py-4 lg:py-5 xl:py-6 rounded-xl font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transition-all duration-300 pulse-animation mb-3 lg:mb-4 responsive-btn bounce-in" style="color: #1094e6; --delay: 0.6s;">
-                        🛒 ¡COMPRAR AHORA!
+                    <button onclick="openOrderModal()" class="w-full bg-yellow-400 py-4 lg:py-5 xl:py-6 rounded-xl font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transition-all duration-300 pulse-animation mb-3 lg:mb-4 responsive-btn bounce-in" style="color: #1094e6; --delay: 0.6s;">
+                        🛒 ¡ORDENE AHORA Y PAGUE AL RECIBIRLO!
                     </button>
+                    
+                    <div class="text-center mb-3">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            🚚 ENVÍO GRATIS
+                        </span>
+                    </div>
                     
                     <p class="text-xs lg:text-sm text-white/80 fade-in" style="--delay: 0.7s;">
                         🎥 <a href="https://aware-cursos.s3.amazonaws.com/Tutoriales+para+Clientes/Comprar+con+Power+Link.mp4" target="_blank" class="underline hover:text-yellow-300">
@@ -667,6 +802,104 @@
         </div>
     </section>
 
+    <!-- Modal de Pedido -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-6 lg:p-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl lg:text-3xl font-bold gradient-text mb-2">¡Completa tu Pedido!</h2>
+                    <p class="text-gray-600">Paga cuando recibas tu Thermo T3 en casa</p>
+                    <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-3 mt-4">
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-yellow-600">🚚</span>
+                            <span class="font-semibold text-yellow-800">ENVÍO GRATIS + PAGO CONTRAENTREGA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="orderForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido *</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dni">DNI *</label>
+                            <input type="text" id="dni" name="dni" pattern="[0-9]{8}" maxlength="8" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico *</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="departamento">Departamento *</label>
+                            <select id="departamento" name="departamento" required>
+                                <option value="">Seleccionar departamento</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="provincia">Provincia *</label>
+                            <select id="provincia" name="provincia" required disabled>
+                                <option value="">Seleccionar provincia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distrito">Distrito *</label>
+                        <select id="distrito" name="distrito" required disabled>
+                            <option value="">Seleccionar distrito</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección Completa *</label>
+                        <input type="text" id="direccion" name="direccion" placeholder="Av/Jr/Calle, número, referencia" required>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-bold text-lg">Thermo T3 - 28 sobres</h3>
+                                <p class="text-sm text-gray-600">Té termogénico natural</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-blue-600">S/ 129.50</div>
+                                <div class="text-sm text-green-600 font-semibold">Envío GRATIS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105">
+                        🛒 ORDENAR AHORA - PAGO CONTRAENTREGA
+                    </button>
+
+                    <div class="text-center mt-4 text-sm text-gray-500">
+                        <p>✅ Pago seguro al recibir tu producto</p>
+                        <p>✅ Envío gratis a todo el Perú</p>
+                        <p>✅ Te contactaremos para confirmar tu pedido</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Urgency Section responsive -->
     <section class="py-16 lg:py-24 bg-gradient-to-r from-green-600 to-teal-600 text-white">
         <div class="container mx-auto px-4 text-center max-w-7xl">
@@ -690,8 +923,8 @@
                 </div>
             </div>
             
-            <button onclick="comprarAhora()" class="bg-yellow-400 text-blue-900 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.4s;">
-                🔥 ¡COMPRAR THERMO T3!
+            <button onclick="openOrderModal()" class="bg-yellow-400 text-blue-900 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-lg lg:text-xl xl:text-2xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn" style="--delay: 0.4s;">
+                🔥 ¡ORDENAR THERMO T3!
             </button>
         </div>
     </section>
@@ -736,7 +969,7 @@
             </p>
             
             <div class="mb-8 lg:mb-12">
-                <button onclick="comprarAhora()" class="bg-yellow-400 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-xl lg:text-2xl xl:text-3xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn w-full max-w-md" style="color: #1094e6; --delay: 0.3s;">
+                <button onclick="openOrderModal()" class="bg-yellow-400 px-8 lg:px-12 xl:px-16 py-4 lg:py-5 xl:py-6 rounded-full font-bold text-xl lg:text-2xl xl:text-3xl hover:bg-yellow-300 transform hover:scale-105 transition-all duration-300 pulse-animation bounce-in responsive-btn w-full max-w-md" style="color: #1094e6; --delay: 0.3s;">
                     🔥 ¡ORDENAR AHORA!
                 </button>
                 <div class="mt-4 lg:mt-6 text-white/90 fade-in" style="--delay: 0.4s;">
@@ -765,13 +998,438 @@
     </div>
 
     <script>
-        // Función para comprar
-        function comprarAhora() {
+        // Datos de ubicación del Perú
+        const ubicacionesPeru = {
+            "Amazonas": {
+                "Chachapoyas": ["Chachapoyas", "Asunción", "Balsas", "Cheto", "Chiliquín", "Chuquibamba", "Granada", "Huancas", "La Jalca", "Leimebamba", "Levanto", "Magdalena", "Mariscal Castilla", "Molinopampa", "Montevideo", "Olleros", "Quinjalca", "San Francisco de Daguas", "San Isidro de Maino", "Soloco", "Sonche"],
+                "Bagua": ["Bagua", "Aramango", "Copallin", "El Parco", "Imaza", "La Peca"],
+                "Bongará": ["Jumbilla", "Chisquilla", "Churuja", "Corosha", "Cuispes", "Florida", "Jazan", "Recta", "San Carlos", "Shipasbamba", "Valera", "Yambrasbamba"],
+                "Condorcanqui": ["Nieva", "El Cenepa", "Río Santiago"],
+                "Luya": ["Lamud", "Camporredondo", "Cocabamba", "Colcamar", "Conila", "Inguilpata", "Lónguita", "Lonya Chico", "Luya", "Luya Viejo", "María", "Ocalli", "Ocumal", "Pisuquia", "Providencia", "San Cristóbal", "San Francisco del Yeso", "San Jerónimo", "San Juan de Lopecancha", "Santa Catalina", "Santo Tomás", "Tingo", "Trita"],
+                "Rodríguez de Mendoza": ["San Nicolás", "Chirimoto", "Cochamal", "Huambo", "Limabamba", "Longar", "Mariscal Benavides", "Milpuc", "Omia", "Santa Rosa", "Totora", "Vista Alegre"],
+                "Utcubamba": ["Bagua Grande", "Cajaruro", "Cumba", "El Milagro", "Jamalca", "Lonya Grande", "Yamon"]
+            },
+            "Áncash": {
+                "Huaraz": ["Huaraz", "Cochabamba", "Colcabamba", "Huanchay", "Independencia", "Jangas", "La Libertad", "Olleros", "Pampas Grande", "Pariacoto", "Pira", "Tarica"],
+                "Aija": ["Aija", "Coris", "Huacllán", "La Merced", "Succha"],
+                "Antonio Raymondi": ["Llamellín", "Aczo", "Chaccho", "Chingas", "Mirgas", "San Juan de Rontoy"],
+                "Asunción": ["Chacas", "Acochaca"],
+                "Bolognesi": ["Chiquián", "Abelardo Pardo Lezameta", "Antonio Raymondi", "Aquia", "Cajacay", "Canis", "Colquioc", "Huallanca", "Huasta", "Huayllacayan", "La Primavera", "Mangas", "Pacllon", "San Miguel de Corpanqui", "Ticllos"],
+                "Carhuaz": ["Carhuaz", "Acopampa", "Amashca", "Anta", "Ataquero", "Marcará", "Pariahuanca", "San Miguel de Aco", "Shilla", "Tinco", "Yungar"],
+                "Carlos Fermín Fitzcarrald": ["San Luis", "San Nicolás", "Yauya"],
+                "Casma": ["Casma", "Buena Vista Alta", "Comandante Noel", "Yautan"],
+                "Corongo": ["Corongo", "Aco", "Bambas", "Cusca", "La Pampa", "Yanac", "Yupán"],
+                "Huari": ["Huari", "Anra", "Cajay", "Chavin de Huantar", "Huacachi", "Huacchis", "Huachis", "Huantar", "Masin", "Paucas", "Ponto", "Rahuapampa", "Rapayan", "San Marcos", "San Pedro de Chana", "Uco"],
+                "Huarmey": ["Huarmey", "Cochapeti", "Culebras", "Huayan", "Malvas"],
+                "Huaylas": ["Caraz", "Huallanca", "Huata", "Huaylas", "Mato", "Pamparomas", "Pueblo Libre", "Santa Cruz", "Santo Toribio", "Yuracmarca"],
+                "Mariscal Luzuriaga": ["Piscobamba", "Casca", "Eleazar Guzmán Barron", "Fidel Olivas Escudero", "Llama", "Llumpa", "Lucma", "Musga"],
+                "Ocros": ["Ocros", "Acas", "Cajamarquilla", "Carhuapampa", "Cochas", "Congas", "Llipa", "San Cristóbal de Rajan", "San Pedro", "Santiago de Chilcas"],
+                "Pallasca": ["Cabana", "Bolognesi", "Conchucos", "Huacaschuque", "Huandoval", "Lacabamba", "Llapo", "Pallasca", "Pampas", "Santa Rosa", "Tauca"],
+                "Pomabamba": ["Pomabamba", "Huayllan", "Parobamba", "Quinuabamba"],
+                "Recuay": ["Recuay", "Catac", "Cotaparaco", "Huayllapampa", "Llacllin", "Marca", "Pampas Chico", "Pararin", "Tapacocha", "Ticapampa"],
+                "Santa": ["Chimbote", "Cáceres del Perú", "Coishco", "Macate", "Moro", "Nepeña", "Samanco", "Santa", "Nuevo Chimbote"],
+                "Sihuas": ["Sihuas", "Acobamba", "Alfonso Ugarte", "Cashapampa", "Chingalpo", "Huayllabamba", "Quiches", "Ragash", "San Juan", "Sicsibamba"],
+                "Yungay": ["Yungay", "Cascapara", "Mancos", "Matacoto", "Quillo", "Ranrahirca", "Shupluy", "Yanama"]
+            },
+            "Apurímac": {
+                "Abancay": ["Abancay", "Chacoche", "Circa", "Curahuasi", "Huanipaca", "Lambrama", "Pichirhua", "San Pedro de Cachora", "Tamburco"],
+                "Andahuaylas": ["Andahuaylas", "Andarapa", "Chiara", "Huancarama", "Huancaray", "Huayana", "Kishuará", "Pacobamba", "Pacucha", "Pampachiri", "Pomacocha", "San Antonio de Cachi", "San Jerónimo", "San Miguel de Chaccrampa", "Santa María de Chicmo", "Talavera", "Tumay Huaraca", "Turpo"],
+                "Antabamba": ["Antabamba", "El Oro", "Huaquirca", "Juan Espinoza Medrano", "Oropesa", "Pachaconas", "Sabaino"],
+                "Aymaraes": ["Chalhuanca", "Capaya", "Caraybamba", "Chapimarca", "Colcabamba", "Cotaruse", "Huayllo", "Justo Apu Sahuaraura", "Lucre", "Pocohuanca", "San Juan de Chacña", "Sañayca", "Soraya", "Tapairihua", "Tintay", "Toraya", "Yanaca"],
+                "Chincheros": ["Chincheros", "Anco Huallo", "Cocharcas", "Huaccana", "Ocobamba", "Ongoy", "Uranmarca"],
+                "Cotabambas": ["Tambobamba", "Cotabambas", "Coyllurqui", "Haquira", "Mara", "Challhuahuacho"],
+                "Grau": ["Chuquibambilla", "Curasco", "Curpahuasi", "Huayllati", "Mamara", "Micaela Bastidas", "Pataypampa", "Progreso", "San Antonio", "Santa Rosa", "Turpay", "Vilcabamba", "Virundo"]
+            },
+            "Arequipa": {
+                "Arequipa": ["Arequipa", "Alto Selva Alegre", "Cayma", "Cerro Colorado", "Characato", "Chiguata", "Jacobo Hunter", "La Joya", "Mariano Melgar", "Miraflores", "Mollebaya", "Paucarpata", "Pocsi", "Polobaya", "Quequeña", "Sabandia", "Sachaca", "San Juan de Siguas", "San Juan de Tarucani", "Santa Isabel de Siguas", "Santa Rita de Siguas", "Socabaya", "Tiabaya", "Uchumayo", "Vitor", "Yanahuara", "Yarabamba", "Yura"],
+                "Camaná": ["Camaná", "José María Quimper", "Mariano Nicolás Valcárcel", "Mariscal Cáceres", "Nicolás de Piérola", "Ocoña", "Quilca", "Samuel Pastor"],
+                "Caravelí": ["Caravelí", "Acarí", "Atico", "Atiquipa", "Bella Unión", "Cahuacho", "Chala", "Chaparra", "Huanuhuanu", "Jaqui", "Lomas", "Quicacha", "Yauca"],
+                "Castilla": ["Aplao", "Andagua", "Ayo", "Chachas", "Chilcaymarca", "Choco", "Huancarqui", "Machaguay", "Orcopampa", "Pampacolca", "Tipan", "Uñón", "Uraca", "Viraco"],
+                "Caylloma": ["Chivay", "Achoma", "Cabanaconde", "Callalli", "Caylloma", "Coporaque", "Huambo", "Huanca", "Ichupampa", "Lari", "Lluta", "Maca", "Madrigal", "San Antonio de Chuca", "Sibayo", "Tapay", "Tisco", "Tuti", "Yanque", "Majes"],
+                "Condesuyos": ["Chuquibamba", "Andaray", "Cayarani", "Chichas", "Iray", "Río Grande", "Salamanca", "Yanaquihua"],
+                "Islay": ["Mollendo", "Cocachacra", "Dean Valdivia", "Islay", "Mejía", "Punta de Bombón"],
+                "La Unión": ["Cotahuasi", "Alca", "Charcana", "Huaynacotas", "Pampamarca", "Puyca", "Quechualla", "Sayla", "Tauria", "Tomepampa", "Toro"]
+            },
+            "Ayacucho": {
+                "Huamanga": ["Ayacucho", "Acocro", "Acos Vinchos", "Carmen Alto", "Chiara", "Ocros", "Pacaycasa", "Quinua", "San José de Ticllas", "San Juan Bautista", "Santiago de Pischa", "Socos", "Tambillo", "Vinchos", "Jesús Nazareno"],
+                "Cangallo": ["Cangallo", "Chuschi", "Los Morochucos", "María Parado de Bellido", "Paras", "Totos"],
+                "Huanca Sancos": ["Sancos", "Carapo", "Sacsamarca", "Santiago de Lucanamarca"],
+                "Huanta": ["Huanta", "Ayahuanco", "Huamanguilla", "Iguaín", "Luricocha", "Santillana", "Sivia", "Llochegua"],
+                "La Mar": ["San Miguel", "Anco", "Ayna", "Chilcas", "Chungui", "Luis Carranza", "Santa Rosa", "Tambo"],
+                "Lucanas": ["Puquio", "Aucara", "Cabana", "Carmen Salcedo", "Chaviña", "Chipao", "Huac-Huas", "Laramate", "Leoncio Prado", "Llauta", "Lucanas", "Ocaña", "Otoca", "Saisa", "San Cristóbal", "San Juan", "San Pedro", "San Pedro de Palco", "Sancos", "Santa Ana de Huaycahuacho", "Santa Lucia"],
+                "Parinacochas": ["Coracora", "Chumpi", "Coronel Castañeda", "Pacapausa", "Pullo", "Puyusca", "San Francisco de Ravacayco", "Upahuacho"],
+                "Páucar del Sara Sara": ["Pausa", "Colta", "Corculla", "Lampa", "Marcabamba", "Oyolo", "Pararca", "San Javier de Alpabamba", "San José de Ushua", "Sara Sara"],
+                "Sucre": ["Querobamba", "Belén", "Chalcos", "Chilcayoc", "Huacaña", "Morcolla", "Paico", "San Pedro de Larcay", "San Salvador de Quije", "Santiago de Paucaray", "Soras"],
+                "Víctor Fajardo": ["Huancapi", "Alcamenca", "Apongo", "Asquipata", "Canaria", "Cayara", "Colca", "Huamanquiquia", "Huancaraylla", "Huaya", "Sarhua", "Vilcanchos"],
+                "Vilcas Huamán": ["Vilcas Huamán", "Accomarca", "Carhuanca", "Concepción", "Huambalpa", "Independencia", "Saurama", "Vischongo"]
+            },
+            "Cajamarca": {
+                "Cajamarca": ["Cajamarca", "Asunción", "Chetilla", "Cospan", "Encañada", "Jesús", "Llacanora", "Los Baños del Inca", "Magdalena", "Matara", "Namora", "San Juan"],
+                "Cajabamba": ["Cajabamba", "Cachachi", "Condebamba", "Sitacocha"],
+                "Celendín": ["Celendín", "Chumuch", "Cortegana", "Huasmin", "Jorge Chávez", "José Galvez", "Miguel Iglesias", "Oxamarca", "Sorochuco", "Sucre", "Utco", "La Libertad de Pallan"],
+                "Chota": ["Chota", "Anguia", "Chadin", "Chiguirip", "Chimban", "Choropampa", "Cochabamba", "Conchan", "Huambos", "Lajas", "Llama", "Miracosta", "Paccha", "Pion", "Querocoto", "San Juan de Licupis", "Tacabamba", "Tocmoche"],
+                "Contumazá": ["Contumazá", "Chilete", "Cupisnique", "Guzmango", "San Benito", "Santa Cruz de Toledo", "Tantarica", "Yonan"],
+                "Cutervo": ["Cutervo", "Callayuc", "Choros", "Cujillo", "La Ramada", "Pimpingos", "Querocotillo", "San Andrés de Cutervo", "San Juan de Cutervo", "San Luis de Lucma", "Santa Cruz", "Santo Domingo de la Capilla", "Santo Tomás", "Socota", "Toribio Casanova"],
+                "Hualgayoc": ["Bambamarca", "Chugur", "Hualgayoc"],
+                "Jaén": ["Jaén", "Bellavista", "Chontali", "Colasay", "Huabal", "Las Pirias", "Pomahuaca", "Pucará", "Sallique", "San Felipe", "San José del Alto", "Santa Rosa"],
+                "San Ignacio": ["San Ignacio", "Chirinos", "Huarango", "La Coipa", "Namballe", "San José de Lourdes", "Tabaconas"],
+                "San Marcos": ["Pedro Gálvez", "Chancay", "Eduardo Villanueva", "Gregorio Pita", "Ichocan", "José Manuel Quiroz", "José Sabogal"],
+                "San Miguel": ["San Miguel", "Bolívar", "Calquis", "Catilluc", "El Prado", "La Florida", "Llapa", "Nanchoc", "Niepos", "San Gregorio", "San Silvestre de Cochan", "Tongod", "Unión Agua Blanca"],
+                "San Pablo": ["San Pablo", "San Bernardino", "San Luis", "Tumbaden"],
+                "Santa Cruz": ["Santa Cruz", "Andabamba", "Catache", "Chancaybaños", "La Esperanza", "Ninabamba", "Pulan", "Saucepampa", "Sexi", "Uticyacu", "Yauyucan"]
+            },
+            "Callao": {
+                "Callao": ["Callao", "Bellavista", "Carmen de la Legua Reynoso", "La Perla", "La Punta", "Ventanilla", "Mi Perú"]
+            },
+            "Cusco": {
+                "Cusco": ["Cusco", "Ccorca", "Poroy", "San Jerónimo", "San Sebastián", "Santiago", "Saylla", "Wanchaq"],
+                "Acomayo": ["Acomayo", "Acopia", "Acos", "Mosoc Llacta", "Pomacanchi", "Rondocan", "Sangarara"],
+                "Anta": ["Anta", "Ancahuasi", "Cachimayo", "Chinchaypujio", "Huarocondo", "Limatambo", "Mollepata", "Pucyura", "Zurite"],
+                "Calca": ["Calca", "Coya", "Lamay", "Lares", "Maras", "Ollantaytambo", "Pisac", "San Salvador", "Taray", "Yanatile"],
+                "Canas": ["Yanaoca", "Checca", "Kunturkanki", "Langui", "Layo", "Pampamarca", "Quehue", "Tupac Amaru"],
+                "Canchis": ["Sicuani", "Checacupe", "Combapata", "Marangani", "Pitumarca", "San Pablo", "San Pedro", "Tinta"],
+                "Chumbivilcas": ["Santo Tomás", "Capacmarca", "Chamaca", "Colquemarca", "Livitaca", "Llusco", "Quiñota", "Velille"],
+                "Espinar": ["Espinar", "Condoroma", "Coporaque", "Occoruro", "Pallpata", "Pichigua", "Suyckutambo", "Alto Pichigua"],
+                "La Convención": ["Santa Ana", "Echarate", "Huayopata", "Maranura", "Ocobamba", "Quellouno", "Kimbiri", "Santa Teresa", "Vilcabamba", "Pichari", "Inkawasi", "Villa Virgen", "Villa Kintiarina", "Megantoni"],
+                "Paruro": ["Paruro", "Accha", "Ccapi", "Colcha", "Huanoquite", "Omacha", "Paccaritambo", "Pillpinto", "Yaurisque"],
+                "Paucartambo": ["Paucartambo", "Caicay", "Challabamba", "Colquepata", "Huancarani", "Kosñipata"],
+                "Quispicanchi": ["Urcos", "Andahuaylillas", "Camanti", "Ccarhuayo", "Ccatca", "Cusipata", "Huaro", "Lucre", "Marcapata", "Ocongate", "Oropesa", "Quiquijana"],
+                "Urubamba": ["Urubamba", "Chinchero", "Huayllabamba", "Machupicchu", "Maras", "Ollantaytambo", "Yucay"]
+            },
+            "Huancavelica": {
+                "Huancavelica": ["Huancavelica", "Acobambilla", "Acoria", "Conayca", "Cuenca", "Huachocolpa", "Huayllahuara", "Izcuchaca", "Laria", "Manta", "Mariscal Cáceres", "Moya", "Nuevo Occoro", "Palca", "Pilchaca", "Vilca", "Yauli", "Ascensión", "Huando"],
+                "Acobamba": ["Acobamba", "Andabamba", "Anta", "Caja", "Marcas", "Paucara", "Pomacocha", "Rosario"],
+                "Angaraes": ["Lircay", "Anchonga", "Callanmarca", "Ccochaccasa", "Chincho", "Congalla", "Huanca-Huanca", "Huayllay Grande", "Julcamarca", "San Antonio de Antaparco", "Santo Tomás de Pata", "Secclla"],
+                "Castrovirreyna": ["Castrovirreyna", "Arma", "Aurahua", "Capillas", "Chupamarca", "Cocas", "Huachos", "Huamatambo", "Mollepampa", "San Juan", "Santa Ana", "Tantara", "Ticrapo"],
+                "Churcampa": ["Churcampa", "Anco", "Chinchihuasi", "El Carmen", "La Merced", "Locroja", "Paucarbamba", "San Miguel de Mayocc", "San Pedro de Coris", "Pachamarca"],
+                "Huaytará": ["Huaytará", "Ayavi", "Córdova", "Huayacundo Arma", "Laramarca", "Ocoyo", "Pilpichaca", "Querco", "Quito-Arma", "San Antonio de Cusicancha", "San Francisco de Sangayaico", "San Isidro", "Santiago de Chocorvos", "Santiago de Quirahuara", "Santo Domingo de Capillas", "Tambo"],
+                "Tayacaja": ["Pampas", "Acostambo", "Acraquia", "Ahuaycha", "Colcabamba", "Daniel Hernández", "Huachocolpa", "Huaribamba", "Ñahuimpuquio", "Pazos", "Quishuar", "Salcabamba", "Salcahuasi", "San Marcos de Rocchac", "Surcubamba", "Tintay Puncu"]
+            },
+            "Huánuco": {
+                "Huánuco": ["Huánuco", "Amarilis", "Chinchao", "Churubamba", "Margos", "Quisqui", "San Francisco de Cayran", "San Pedro de Chaulan", "Santa María del Valle", "Yarumayo", "Pillco Marca", "Yacus", "José Crespo y Castillo"],
+                "Ambo": ["Ambo", "Cayna", "Colpas", "Conchamarca", "Huacar", "San Francisco", "San Rafael", "Tomay Kichwa"],
+                "Dos de Mayo": ["La Unión", "Chuquis", "Marías", "Pachas", "Quivilla", "Ripan", "Shunqui", "Sillapata", "Yanas"],
+                "Huacaybamba": ["Huacaybamba", "Canchabamba", "Cochabamba", "Pinra"],
+                "Huamalíes": ["Llata", "Arancay", "Chavín de Pariarca", "Jacas Grande", "Jircan", "Miraflores", "Monzón", "Punchao", "Puños", "Singa", "Tantamayo"],
+                "Leoncio Prado": ["Rupa-Rupa", "Daniel Alomías Robles", "Hermílio Valdizán", "José Crespo y Castillo", "Luyando", "Mariano Dámaso Beraun", "Pucayacu", "Castillo Grande", "Pueblo Nuevo", "Santo Domingo de Anda"],
+                "Marañón": ["Huacrachuco", "Cholon", "San Buenaventura"],
+                "Pachitea": ["Panao", "Chaglla", "Molino", "Umari"],
+                "Puerto Inca": ["Puerto Inca", "Codo del Pozuzo", "Honoria", "Tournavista", "Yuyapichis"],
+                "Lauricocha": ["Jesús", "Baños", "Jivia", "Queropalca", "Rondos", "San Francisco de Asís", "San Miguel de Cauri"],
+                "Yarowilca": ["Chavinillo", "Cahuac", "Chacabamba", "Aparicio Pomares", "Jacas Chico", "Obas", "Pampamarca", "Choras"]
+            },
+            "Ica": {
+                "Ica": ["Ica", "La Tinguiña", "Los Aquijes", "Ocucaje", "Pachacutec", "Parcona", "Pueblo Nuevo", "Salas", "San José de Los Molinos", "San Juan Bautista", "Santiago", "Subtanjalla", "Tate", "Yauca del Rosario"],
+                "Chincha": ["Chincha Alta", "Alto Larán", "Chavin", "Chincha Baja", "El Carmen", "Grocio Prado", "Pueblo Nuevo", "San Juan de Yanac", "San Pedro de Huacarpana", "Sunampe", "Tambo de Mora"],
+                "Nasca": ["Nasca", "Changuillo", "El Ingenio", "Marcona", "Vista Alegre"],
+                "Palpa": ["Palpa", "Llipata", "Río Grande", "Santa Cruz", "Tibillo"],
+                "Pisco": ["Pisco", "Huancano", "Humay", "Independencia", "Paracas", "San Andrés", "San Clemente", "Túpac Amaru Inca"]
+            },
+            "Junín": {
+                "Huancayo": ["Huancayo", "Carhuacallanga", "Chacapampa", "Chicche", "Chilca", "Chongos Alto", "Chupuro", "Colca", "Cullhuas", "El Tambo", "Huacrapuquio", "Hualhuas", "Huancan", "Huasicancha", "Huayucachi", "Ingenio", "Pariahuanca", "Pilcomayo", "Pucará", "Quichuay", "Quilcas", "San Agustín", "San Jerónimo de Tunan", "Saño", "Sapallanga", "Sicaya", "Santo Domingo de Acobamba", "Viques"],
+                "Concepción": ["Concepción", "Aco", "Andamarca", "Chambara", "Cochas", "Comas", "Heroínas Toledo", "Manzanares", "Mariscal Castilla", "Matahuasi", "Mito", "Nueve de Julio", "Orcotuna", "San José de Quero", "Santa Rosa de Ocopa"],
+                "Chanchamayo": ["Chanchamayo", "Perené", "Pichanaqui", "San Luis de Shuaro", "San Ramón", "Vitoc"],
+                "Jauja": ["Jauja", "Acolla", "Apata", "Ataura", "Canchayllo", "Curicaca", "El Mantaro", "Huamali", "Huaripampa", "Huertas", "Janjaillo", "Julcán", "Leonor Ordóñez", "Llocllapampa", "Marco", "Masma", "Masma Chicche", "Molinos", "Monobamba", "Muqui", "Muquiyauyo", "Paca", "Paccha", "Pancan", "Parco", "Pomacancha", "Ricran", "San Lorenzo", "San Pedro de Chunan", "Sausa", "Sincos", "Tunan Marca", "Yauli", "Yauyos"],
+                "Junín": ["Junín", "Carhuamayo", "Ondores", "Ulcumayo"],
+                "Satipo": ["Satipo", "Coviriali", "Llaylla", "Mazamari", "Pampa Hermosa", "Pangoa", "Río Negro", "Río Tambo", "Vizcatan del Ene"],
+                "Tarma": ["Tarma", "Acobamba", "Huaricolca", "Huasahuasi", "La Unión", "Palca", "Palcamayo", "San Pedro de Cajas", "Tapo"],
+                "Yauli": ["La Oroya", "Chacapalpa", "Huay-Huay", "Marcapomacocha", "Morococha", "Paccha", "Santa Bárbara de Carhuacayan", "Santa Rosa de Sacco", "Suitucancha", "Yauli"],
+                "Chupaca": ["Chupaca", "Ahuac", "Chongos Bajo", "Huachac", "Huamancaca Chico", "San Juan de Iscos", "San Juan de Jarpa", "Tres de Diciembre", "Yanacancha"]
+            },
+            "La Libertad": {
+                "Trujillo": ["Trujillo", "El Porvenir", "Florencia de Mora", "Huanchaco", "La Esperanza", "Laredo", "Moche", "Poroto", "Salaverry", "Simbal", "Víctor Larco Herrera"],
+                "Ascope": ["Ascope", "Chicama", "Chocope", "Magdalena de Cao", "Paiján", "Rázuri", "Santiago de Cao", "Casa Grande"],
+                "Bolívar": ["Bolívar", "Bambamarca", "Condormarca", "Longotea", "Uchumarca", "Ucuncha"],
+                "Chepén": ["Chepén", "Pacanga", "Pueblo Nuevo"],
+                "Julcán": ["Julcán", "Calamarca", "Carabamba", "Huaso"],
+                "Otuzco": ["Otuzco", "Agallpampa", "Charat", "Huaranchal", "La Cuesta", "Mache", "Paranday", "Salpo", "Sinsicap", "Usquil"],
+                "Pacasmayo": ["San Pedro de Lloc", "Guadalupe", "Jequetepeque", "Pacasmayo", "San José"],
+                "Pataz": ["Tayabamba", "Buldibuyo", "Chillia", "Huancaspata", "Huaylillas", "Huayo", "Ongón", "Parcoy", "Pataz", "Pías", "Santiago de Challas", "Taurija", "Urpay"],
+                "Sánchez Carrión": ["Huamachuco", "Chugay", "Cochorco", "Curgos", "Marcabal", "Sanagoran", "Sarin", "Sartimbamba"],
+                "Santiago de Chuco": ["Santiago de Chuco", "Angasmarca", "Cachicadan", "Mollebamba", "Mollepata", "Quiruvilca", "Santa Cruz de Chuca", "Sitabamba"],
+                "Gran Chimú": ["Cascas", "Lucma", "Marmot", "Sayapullo"],
+                "Virú": ["Virú", "Chao", "Guadalupito"]
+            },
+            "Lambayeque": {
+                "Chiclayo": ["Chiclayo", "Chongoyape", "Eten", "Eten Puerto", "José Leonardo Ortiz", "La Victoria", "Lagunas", "Monsefú", "Nueva Arica", "Oyotún", "Picsi", "Pimentel", "Reque", "Santa Rosa", "Saña", "Cayaltí", "Pátapo", "Pomalca", "Pucalá", "Tumán"],
+                "Ferreñafe": ["Ferreñafe", "Cañaris", "Incahuasi", "Manuel Antonio Mesones Muro", "Pitipo", "Pueblo Nuevo"],
+                "Lambayeque": ["Lambayeque", "Chóchope", "Illimo", "Jayanca", "Mochumí", "Mórrope", "Motupe", "Olmos", "Pacora", "Salas", "San José", "Túcume"]
+            },
+            "Lima": {
+                "Lima": ["Lima", "Ancón", "Ate", "Barranco", "Breña", "Carabayllo", "Chaclacayo", "Chorrillos", "Cieneguilla", "Comas", "El Agustino", "Independencia", "Jesús María", "La Molina", "La Victoria", "Lince", "Los Olivos", "Lurigancho", "Lurín", "Magdalena del Mar", "Miraflores", "Pachacámac", "Pucusana", "Pueblo Libre", "Puente Piedra", "Punta Hermosa", "Punta Negra", "Rímac", "San Bartolo", "San Borja", "San Isidro", "San Juan de Lurigancho", "San Juan de Miraflores", "San Luis", "San Martín de Porres", "San Miguel", "Santa Anita", "Santa María del Mar", "Santa Rosa", "Santiago de Surco", "Surquillo", "Villa El Salvador", "Villa María del Triunfo"],
+                "Barranca": ["Barranca", "Paramonga", "Pativilca", "Supe", "Supe Puerto"],
+                "Cajatambo": ["Cajatambo", "Copa", "Gorgor", "Huancapón", "Manas"],
+                "Canta": ["Canta", "Arahuay", "Huamantanga", "Huaros", "Lachaqui", "San Buenaventura", "Santa Rosa de Quives"],
+                "Cañete": ["San Vicente de Cañete", "Asia", "Calango", "Cerro Azul", "Chilca", "Coayllo", "Imperial", "Lunahuaná", "Mala", "Nuevo Imperial", "Pacarán", "Quilmaná", "San Antonio", "San Luis", "Santa Cruz de Flores", "Zúñiga"],
+                "Huaral": ["Huaral", "Atavillos Alto", "Atavillos Bajo", "Aucallama", "Chancay", "Ihuarí", "Lampián", "Pacaraos", "San Miguel de Acos", "Santa Cruz de Andamarca", "Sumbilca", "Veintisiete de Noviembre"],
+                "Huarochirí": ["Matucana", "Antioquia", "Callahuanca", "Carampoma", "Chicla", "Cuenca", "Huachupampa", "Huanza", "Huarochirí", "Lahuaytambo", "Langa", "Laraos", "Mariatana", "Ricardo Palma", "San Andrés de Tupicocha", "San Antonio", "San Bartolomé", "San Damián", "San Juan de Iris", "San Juan de Tantaranche", "San Lorenzo de Quinti", "San Mateo", "San Mateo de Otao", "San Pedro de Casta", "San Pedro de Huancayre", "Sangallaya", "Santa Cruz de Cocachacra", "Santa Eulalia", "Santiago de Anchucaya", "Santiago de Tuna", "Santo Domingo de los Olleros", "Surco"],
+                "Huaura": ["Huacho", "Ambar", "Caleta de Carquín", "Checras", "Hualmay", "Huaura", "Leoncio Prado", "Paccho", "Santa Leonor", "Santa María", "Sayán", "Vegueta"],
+                "Oyón": ["Oyón", "Andajes", "Caujul", "Cochamarca", "Navan", "Pachangara"],
+                "Yauyos": ["Yauyos", "Alis", "Ayauca", "Ayaviri", "Azángaro", "Cacra", "Carania", "Catahuasi", "Chocos", "Cochas", "Colonia", "Hongos", "Huampara", "Huancaya", "Huangascar", "Huantán", "Huañec", "Laraos", "Lincha", "Madean", "Miraflores", "Omas", "Putinza", "Quinches", "Quinocay", "San Joaquín", "San Pedro de Pilas", "Tanta", "Tauripampa", "Tomás", "Tupe", "Viñac", "Vitis"]
+            },
+            "Loreto": {
+                "Maynas": ["Iquitos", "Alto Nanay", "Fernando Lores", "Indiana", "Las Amazonas", "Mazán", "Napo", "Punchana", "Putumayo", "Torres Causana", "Belén", "San Juan Bautista"],
+                "Alto Amazonas": ["Yurimaguas", "Balsapuerto", "Jeberos", "Lagunas", "Santa Cruz", "Teniente César López Rojas"],
+                "Loreto": ["Nauta", "Parinari", "Tigre", "Trompeteros", "Urarinas"],
+                "Mariscal Ramón Castilla": ["Ramón Castilla", "Pebas", "Yavari", "San Pablo"],
+                "Requena": ["Requena", "Alto Tapiche", "Capelo", "Emilio San Martín", "Maquia", "Puinahua", "Saquena", "Soplin", "Tapiche", "Jenaro Herrera", "Yaquerana"],
+                "Ucayali": ["Contamana", "Inahuaya", "Padre Márquez", "Pampa Hermosa", "Sarayacu", "Vargas Guerra"],
+                "Datem del Marañón": ["Barranca", "Cahuapanas", "Manseriche", "Morona", "Pastaza", "Andoas"],
+                "Putumayo": ["Putumayo", "Rosa Panduro", "Teniente Manuel Clavero", "Yaguas"]
+            },
+            "Madre de Dios": {
+                "Tambopata": ["Tambopata", "Inambari", "Las Piedras", "Laberinto"],
+                "Manu": ["Manu", "Fitzcarrald", "Madre de Dios", "Huepetuhe"],
+                "Tahuamanu": ["Iñapari", "Iberia", "Tahuamanu"]
+            },
+            "Moquegua": {
+                "Mariscal Nieto": ["Moquegua", "Carumas", "Cuchumbaya", "Samegua", "San Cristóbal", "Torata"],
+                "General Sánchez Cerro": ["Omate", "Chojata", "Coalaque", "Ichuña", "La Capilla", "Lloque", "Matalaque", "Puquina", "Quinistaquillas", "Ubinas", "Yunga"],
+                "Ilo": ["Ilo", "El Algarrobal", "Pacocha"]
+            },
+            "Pasco": {
+                "Pasco": ["Chaupimarca", "Huachón", "Huariaca", "Huayllay", "Ninacaca", "Pallanchacra", "Paucartambo", "San Francisco de Asís de Yarusyacán", "Santa Ana de Tusi", "Tinyahuarco", "Vicco", "Yanacancha"],
+                "Daniel Alcides Carrión": ["Yanahuanca", "Chacayan", "Goyllarisquizga", "Paucar", "San Pedro de Pillao", "Santa Ana de Tusi", "Tapuc", "Vilcabamba"],
+                "Oxapampa": ["Oxapampa", "Chontabamba", "Huancabamba", "Palcazu", "Pozuzo", "Puerto Bermúdez", "Villa Rica", "Constitución"]
+            },
+            "Piura": {
+                "Piura": ["Piura", "Castilla", "Catacaos", "Cura Mori", "El Tallán", "La Arena", "La Unión", "Las Lomas", "Tambo Grande", "Veintiseis de Octubre"],
+                "Ayabaca": ["Ayabaca", "Frías", "Jililí", "Lagunas", "Montero", "Pacaipampa", "Paimas", "Sapillica", "Sicchez", "Suyo"],
+                "Huancabamba": ["Huancabamba", "Canchaque", "El Carmen de la Frontera", "Huarmaca", "Lalaquiz", "San Miguel de El Faique", "Sóndor", "Sondorillo"],
+                "Morropón": ["Chulucanas", "Buenos Aires", "Chalaco", "La Matanza", "Morropón", "Salitral", "San Juan de Bigote", "Santa Catalina de Mossa", "Santo Domingo", "Yamango"],
+                "Paita": ["Paita", "Amotape", "Arenal", "Colán", "La Huaca", "Tamarindo", "Vichayal"],
+                "Sullana": ["Sullana", "Bellavista", "Ignacio Escudero", "Lancones", "Marcavelica", "Miguel Checa", "Querecotillo", "Salitral"],
+                "Talara": ["Pariñas", "El Alto", "La Brea", "Lobitos", "Los Órganos", "Máncora"],
+                "Sechura": ["Sechura", "Bellavista de la Unión", "Bernal", "Cristo Nos Valga", "Vice", "Rinconada Llicuar"]
+            },
+            "Puno": {
+                "Puno": ["Puno", "Acora", "Amantani", "Atuncolla", "Capachica", "Chucuito", "Coata", "Huata", "Mañazo", "Paucarcolla", "Pichacani", "Platería", "San Antonio", "Tiquillaca", "Vilque"],
+                "Azángaro": ["Azángaro", "Achaya", "Arapa", "Asillo", "Caminaca", "Chupa", "José Domingo Choquehuanca", "Muñani", "Potoni", "Saman", "San Antón", "San José", "San Juan de Salinas", "Santiago de Pupuja", "Tirapata"],
+                "Carabaya": ["Macusani", "Ajoyani", "Ayapata", "Coasa", "Corani", "Crucero", "Ituata", "Ollachea", "San Gabán", "Usicayos"],
+                "Chucuito": ["Juli", "Desaguadero", "Huacullani", "Kelluyo", "Pisacoma", "Pomata", "Zepita"],
+                "El Collao": ["Ilave", "Capazo", "Pilcuyo", "Santa Rosa", "Conduriri"],
+                "Huancané": ["Huancané", "Cojata", "Huatasani", "Inchupalla", "Pusi", "Rosaspata", "Taraco", "Vilque Chico"],
+                "Lampa": ["Lampa", "Cabanilla", "Calapuja", "Nicasio", "Ocuviri", "Palca", "Paratia", "Pucará", "Santa Lucía", "Vilavila"],
+                "Melgar": ["Ayaviri", "Antauta", "Cupi", "Llalli", "Macari", "Nuñoa", "Orurillo", "Santa Rosa", "Umachiri"],
+                "Moho": ["Moho", "Conima", "Huayrapata", "Tilali"],
+                "San Antonio de Putina": ["Putina", "Ananea", "Pedro Vilca Apaza", "Quilcapuncu", "Sina"],
+                "San Román": ["Juliaca", "Cabana", "Cabanillas", "Caracoto", "San Miguel"],
+                "Sandia": ["Sandia", "Cuyocuyo", "Limbani", "Patambuco", "Phara", "Quiaca", "San Juan del Oro", "Yanahuaya", "Alto Inambari", "Massiapo"],
+                "Yunguyo": ["Yunguyo", "Anapia", "Copani", "Cuturapi", "Ollaraya", "Tinicachi", "Unicachi"]
+            },
+            "San Martín": {
+                "Moyobamba": ["Moyobamba", "Calzada", "Habana", "Jepelacio", "Soritor", "Yantalo"],
+                "Bellavista": ["Bellavista", "Alto Biavo", "Bajo Biavo", "Huallaga", "San Pablo", "San Rafael"],
+                "El Dorado": ["San José de Sisa", "Agua Blanca", "San Martín", "Santa Rosa", "Shatoja"],
+                "Huallaga": ["Saposoa", "Alto Saposoa", "El Eslabón", "Piscoyacu", "Sacanche", "Tingo de Saposoa"],
+                "Lamas": ["Lamas", "Alonso de Alvarado", "Barranquita", "Caynarachi", "Cuñumbuqui", "Pinto Recodo", "Rumisapa", "San Roque de Cumbaza", "Shanao", "Tabalosos", "Zapatero"],
+                "Mariscal Cáceres": ["Juanjuí", "Campanilla", "Huicungo", "Pachiza", "Pajarillo"],
+                "Picota": ["Picota", "Buenos Aires", "Caspisapa", "Pilluana", "Pucacaca", "San Cristóbal", "San Hilarión", "Shamboyacu", "Tingo de Ponasa", "Tres Unidos"],
+                "Rioja": ["Rioja", "Awajun", "Elías Soplin Vargas", "Nueva Cajamarca", "Pardo Miguel", "Posic", "San Fernando", "Yorongos", "Yuracyacu"],
+                "San Martín": ["Tarapoto", "Alberto Leveau", "Cacatachi", "Chazuta", "Chipurana", "El Porvenir", "Huimbayoc", "Juan Guerra", "La Banda de Shilcayo", "Morales", "Papaplaya", "San Antonio", "Sauce", "Shapaja"],
+                "Tocache": ["Tocache", "Nuevo Progreso", "Pólvora", "Shunte", "Uchiza"]
+            },
+            "Tacna": {
+                "Tacna": ["Tacna", "Alto de la Alianza", "Calana", "Ciudad Nueva", "Inclan", "Pachia", "Palca", "Pocollay", "Sama", "Coronel Gregorio Albarracín Lanchipa"],
+                "Candarave": ["Candarave", "Cairani", "Camilaca", "Curibaya", "Huanuara", "Quilahuani"],
+                "Jorge Basadre": ["Locumba", "Ilabaya", "Ite"],
+                "Tarata": ["Tarata", "Héroes Albarracín", "Estique", "Estique-Pampa", "Sitajara", "Susapaya", "Tarucachi", "Ticaco"]
+            },
+            "Tumbes": {
+                "Tumbes": ["Tumbes", "Corrales", "La Cruz", "Pampas de Hospital", "San Jacinto", "San Juan de la Virgen"],
+                "Contralmirante Villar": ["Zorritos", "Casitas", "Canoas de Punta Sal"],
+                "Zarumilla": ["Zarumilla", "Aguas Verdes", "Matapalo", "Papayal"]
+            },
+            "Ucayali": {
+                "Coronel Portillo": ["Callería", "Campoverde", "Iparia", "Masisea", "Yarinacocha", "Nueva Requena", "Manantay"],
+                "Atalaya": ["Raymondi", "Sepahua", "Tahuania", "Yurúa"],
+                "Padre Abad": ["Padre Abad", "Irazola", "Curimaná", "Neshuya"],
+                "Purús": ["Purús"]
+            }
+        };
+
+        // Variables globales para el formulario
+        let pedidosData = [];
+
+        // Función para abrir el modal
+        function openOrderModal() {
             // Track Facebook Pixel Purchase Intent
             fbq('track', 'InitiateCheckout');
             
-            // Redirect to purchase link
-            window.open('https://tiendafuxion.com/storelt/rinde.saludable/2433238', '_blank');
+            const modal = document.getElementById('orderModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            // Cargar departamentos si no se han cargado
+            if (document.getElementById('departamento').children.length === 1) {
+                cargarDepartamentos();
+            }
+        }
+
+        // Función para cerrar el modal
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Función para cargar departamentos
+        function cargarDepartamentos() {
+            const departamentoSelect = document.getElementById('departamento');
+            departamentoSelect.innerHTML = '<option value="">Seleccionar departamento</option>';
+            
+            Object.keys(ubicacionesPeru).forEach(departamento => {
+                const option = document.createElement('option');
+                option.value = departamento;
+                option.textContent = departamento;
+                departamentoSelect.appendChild(option);
+            });
+        }
+
+        // Función para cargar provincias
+        function cargarProvincias(departamento) {
+            const provinciaSelect = document.getElementById('provincia');
+            const distritoSelect = document.getElementById('distrito');
+            
+            // Limpiar selects
+            provinciaSelect.innerHTML = '<option value="">Seleccionar provincia</option>';
+            distritoSelect.innerHTML = '<option value="">Seleccionar distrito</option>';
+            distritoSelect.disabled = true;
+            
+            if (departamento && ubicacionesPeru[departamento]) {
+                provinciaSelect.disabled = false;
+                
+                Object.keys(ubicacionesPeru[departamento]).forEach(provincia => {
+                    const option = document.createElement('option');
+                    option.value = provincia;
+                    option.textContent = provincia;
+                    provinciaSelect.appendChild(option);
+                });
+            } else {
+                provinciaSelect.disabled = true;
+            }
+        }
+
+        // Función para cargar distritos
+        function cargarDistritos(departamento, provincia) {
+            const distritoSelect = document.getElementById('distrito');
+            
+            // Limpiar select
+            distritoSelect.innerHTML = '<option value="">Seleccionar distrito</option>';
+            
+            if (departamento && provincia && ubicacionesPeru[departamento] && ubicacionesPeru[departamento][provincia]) {
+                distritoSelect.disabled = false;
+                
+                ubicacionesPeru[departamento][provincia].forEach(distrito => {
+                    const option = document.createElement('option');
+                    option.value = distrito;
+                    option.textContent = distrito;
+                    distritoSelect.appendChild(option);
+                });
+            } else {
+                distritoSelect.disabled = true;
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modal events
+            const modal = document.getElementById('orderModal');
+            const closeBtn = document.querySelector('.close');
+            
+            closeBtn.onclick = closeOrderModal;
+            
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    closeOrderModal();
+                }
+            };
+
+            // Form events
+            const departamentoSelect = document.getElementById('departamento');
+            const provinciaSelect = document.getElementById('provincia');
+            
+            departamentoSelect.addEventListener('change', function() {
+                cargarProvincias(this.value);
+            });
+            
+            provinciaSelect.addEventListener('change', function() {
+                const departamento = departamentoSelect.value;
+                cargarDistritos(departamento, this.value);
+            });
+
+            // Form submission
+            const orderForm = document.getElementById('orderForm');
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Recopilar datos del formulario
+                const formData = new FormData(this);
+                const pedidoData = {
+                    'Nombre': formData.get('nombre'),
+                    'Apellido': formData.get('apellido'),
+                    'DNI': formData.get('dni'),
+                    'Teléfono': formData.get('telefono'),
+                    'Correo': formData.get('correo'),
+                    'Departamento': formData.get('departamento'),
+                    'Provincia': formData.get('provincia'),
+                    'Distrito': formData.get('distrito'),
+                    'Dirección': formData.get('direccion'),
+                    'Fecha': new Date().toLocaleString('es-PE', {
+                        timeZone: 'America/Lima',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+                
+                // Agregar a la base de datos local
+                pedidosData.push(pedidoData);
+                
+                // Track Facebook Pixel Purchase
+                fbq('track', 'Purchase', {
+                    currency: 'PEN',
+                    value: 129.50
+                });
+                
+                // Mostrar confirmación
+                alert('¡Pedido registrado exitosamente! Te contactaremos pronto para confirmar tu pedido.\n\n' +
+                      'Nombre: ' + pedidoData.Nombre + ' ' + pedidoData.Apellido + '\n' +
+                      'Teléfono: ' + pedidoData.Teléfono + '\n' +
+                      'Ubicación: ' + pedidoData.Distrito + ', ' + pedidoData.Provincia + ', ' + pedidoData.Departamento);
+                
+                // Limpiar formulario y cerrar modal
+                this.reset();
+                cargarProvincias('');
+                closeOrderModal();
+                
+                // Descargar Excel automáticamente
+                setTimeout(() => {
+                    descargarExcel();
+                }, 1000);
+            });
+
+            // Validación de DNI
+            const dniInput = document.getElementById('dni');
+            dniInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+                if (this.value.length > 8) {
+                    this.value = this.value.slice(0, 8);
+                }
+            });
+
+            // Validación de teléfono
+            const telefonoInput = document.getElementById('telefono');
+            telefonoInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9+\-\s()]/g, '');
+            });
+        });
+
+        // Función para comprar (mantenida por compatibilidad)
+        function comprarAhora() {
+            openOrderModal();
         }
         
         function scrollTobenefits() {
@@ -934,4 +1592,3 @@
     </script>
 </body>
 </html>
-                        
