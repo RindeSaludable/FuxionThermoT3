@@ -1005,8 +1005,15 @@
             // Track Facebook Pixel Purchase Intent
             fbq('track', 'InitiateCheckout');
             
-            // Redirect to purchase link
-            window.open('https://tiendafuxion.com/storelt/rinde.saludable/2433238', '_blank');
+            // Configuración de WhatsApp
+			const telefono = "51929513801"; // Reemplaza con tu número (ej. 51 para Perú + número)
+			const mensaje = "¡Hola! Quisiera adquirir el Thermo T3 para bajar de peso";
+			
+			// Codificar el mensaje para que sea válido en una URL
+			const mensajeCodificado = encodeURIComponent(mensaje);
+			
+			// Redirigir a WhatsApp
+			window.open(`https://wa.me/${telefono}?text=${mensajeCodificado}`, '_blank');
         }
         
         function scrollTobenefits() {
