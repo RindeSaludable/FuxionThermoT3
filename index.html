@@ -517,7 +517,7 @@
                fbq('trackCustom', 'Plan28Dias');
            }
    
-           fbq('track', 'InitiateCheckout');
+           
        }
    
        document
@@ -643,10 +643,13 @@
    
        btn.innerHTML = 'Enviando...';
    
-       // Evento Lead
+       // Usuario validado y listo para contactar
    
        if (typeof fbq !== 'undefined') {
-           fbq('track', 'Lead');
+			fbq('track', 'InitiateCheckout');
+			fbq('track', 'Lead');
+			fbq('track', 'Contact');
+		   
        }
    
        const interes =
@@ -687,12 +690,6 @@ Origen campaña:
 ${document.getElementById('utm_source')?.value || 'Directo'}
 
 Deseo recibir orientación para realizar mi pedido.`;
-   
-       // Evento Contact
-   
-       if (typeof fbq !== 'undefined') {
-           fbq('track', 'Contact');
-       }
    
        window.open(
            `https://wa.me/51929513801?text=${encodeURIComponent(mensaje)}`,
